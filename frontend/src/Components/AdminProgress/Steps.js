@@ -13,7 +13,7 @@ const steps = (props) => (
                     <input type="checkbox" aria-label="Checkbox for following text input"/> V
                     <input type="checkbox" aria-label="Checkbox for following text input"/> R
                     <input type="checkbox" aria-label="Checkbox for following text input"/> A
-            </span>
+                </span>
             </div>
 
             <div className="Step">Khan Academy

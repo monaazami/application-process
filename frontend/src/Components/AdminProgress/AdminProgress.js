@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Applicants from './Applicants';
+import Steps from './Steps';
 
+import './AdminProgress.css';
 
 class AdminProgress extends Component {
     state = {
@@ -29,7 +31,13 @@ class AdminProgress extends Component {
                         toggle={this.showDetailsHandler}
                     />
                 </div>
-                <div className="card-body"></div>
+                
+                <div className="card-body">
+                    <Steps 
+                        toggle={this.showStepsHandler}
+                        show={this.state.showSteps}
+                    />
+                </div>
             </div>    
         );
     }
