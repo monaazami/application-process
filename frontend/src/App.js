@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import AdminProgress from './Components/AdminProgress/AdminProgress';
 
 import './App.css';
-import ApplicationForm from './components/ApplicationForm';
-import FormSubmittedMessage from './components/FormSubmittedMessage';
+
+import ApplicantDashboard from '../src/ApplicantDashboard';
+
+
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        < AdminProgress />        
+        <AdminProgress />        
       </div>
     );
   }
