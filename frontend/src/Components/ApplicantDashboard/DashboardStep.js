@@ -7,13 +7,13 @@ const DashboardStep = ({stepNumber, details}) => {
 		submitBlock = 	
 			<div>
 				<input type='text' placeholder='Add url here' required/>
-				<button type='submit'> Submit step </button> 
+				<button type='submit'>Submit step</button> 
 			</div>
 	}
 	return (
 		<section>
-			<h3> Step {stepNumber} </h3>
-			<p> {details} </p>
+			<h3>Step {stepNumber}</h3>
+			<p>{details}</p>
 			{submitBlock}
 			<StatusMessage status={(stepNumber != 0) ? '' : 'Approved'}/>
 		</section>

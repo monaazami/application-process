@@ -2,7 +2,7 @@ import React from 'react';
 
 const StatusMessage = ({status}) => {
 	return (
-		<span> Status: {status} </span>
+		<span>Status: {status}</span>
 	);
 }
 
