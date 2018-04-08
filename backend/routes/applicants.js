@@ -41,7 +41,7 @@ router.get('/', (req,res) => {
 
 router.get('/:id', (req,res) => {
 	res.json({
-		id: this.params.id,
+		id: 3432,
 		name: 'Exact Exact',
 		email: 'exact@gmail.com',
 		city: 'London',
