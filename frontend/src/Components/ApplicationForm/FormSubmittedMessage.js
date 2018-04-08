@@ -5,7 +5,7 @@ const FormSubmittedMessage = () => {
 		<div className="container text-center">
 			<img
 				src="https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg"
-				alt="green tick image"
+				alt="green tick"
 				height="150"
 				width="150"
 				className="img-fluid mt-5 pt-4"

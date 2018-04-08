@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import ApplicationForm from '../ApplicationForm/ApplicationForm';
 import ApplicantDashboard from '../ApplicantDashboard/ApplicantDashboard';
 import AdminProgress from '../AdminProgress/AdminProgress';
