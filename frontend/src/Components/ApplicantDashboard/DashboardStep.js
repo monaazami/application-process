@@ -3,7 +3,7 @@ import StatusMessage from './StatusMessage';
 
 const DashboardStep = ({stepNumber, details}) => {
 	let submitBlock;
-	if (stepNumber != 0) {
+	if (stepNumber !== 0) {
 		submitBlock = 	
 			<div>
 				<input type='text' placeholder='Add url here' required/>
@@ -15,7 +15,7 @@ const DashboardStep = ({stepNumber, details}) => {
 			<h3>Step {stepNumber}</h3>
 			<p>{details}</p>
 			{submitBlock}
-			<StatusMessage status={(stepNumber != 0) ? '' : 'Approved'}/>
+			<StatusMessage status={(stepNumber !== 0) ? '' : 'Approved'}/>
 		</section>
 	);
 };

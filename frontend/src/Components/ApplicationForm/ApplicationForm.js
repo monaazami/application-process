@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class ApplicationForm extends Component {
-	constructor() {
-		super();
-	}
-
 	render() {
 		return (
 			<div className="application-form container">
@@ -69,7 +65,7 @@ class ApplicationForm extends Component {
 						<label htmlor="immigrationStatus" className="lead">
 							Are you an asylum seeking or a refugee? *
 						</label>
-						<select class="form-control form-control-lg" id="immigrationStatus" name="immigrationStatus" required>
+						<select className="form-control form-control-lg" id="immigrationStatus" name="immigrationStatus" required>
 							<option>Yes</option>
 							<option>No</option>
 						</select>
@@ -94,7 +90,7 @@ class ApplicationForm extends Component {
 							Programming Experience *
 						</label>
 						<select
-							class="form-control form-control-lg"
+							className="form-control form-control-lg"
 							id="programmingExperience"
 							name="programmingExperience" required
 						>
@@ -111,7 +107,7 @@ class ApplicationForm extends Component {
 						<label htmlFor="computerAccess" className="lead">
 							Do you have access to a computer and the internet? *
 						</label>
-						<select class="form-control form-control-lg" id="computerAccess" name="computerAccess" required>
+						<select className="form-control form-control-lg" id="computerAccess" name="computerAccess" required>
 							<option>Yes</option>
 							<option>No</option>
 						</select>
