@@ -6,17 +6,16 @@ import AdminProgress from '../AdminProgress/AdminProgress';
 import FormSubmittedMessage from '../ApplicationForm/FormSubmittedMessage'
 import Navbar from './Navbar';
 
-const Navigation = () => (
+const Routes = () => (
 	<Router>
 		<div>
 			<Navbar />
-      
 			<Route exact path="/" component={ApplicationForm} />
 			<Route exact path="/applicant-dashboard" component={ApplicantDashboard} />
 			<Route exact path="/admin-progress" component={AdminProgress} />
-      <Route exact path="/form-submitted-message" component={FormSubmittedMessage} />
+      		<Route exact path="/form-submitted-message" component={FormSubmittedMessage} />
 		</div>
 	</Router>
 );
 
-export default Navigation;
+export default Routes;
