@@ -4,7 +4,7 @@ const steps = (props) => (
     <Fragment>
         {props.show? 
         <div className="Step-Title">Application Steps <i className="fa fa-angle-down rotate-icon" onClick={props.toggle}></i></div>
-        : <div className="Step-Title">Application Steps <i class="fa fa-angle-up rotate-icon" onClick={props.toggle}></i></div>}
+        : <div className="Step-Title">Application Steps <i className="fa fa-angle-up rotate-icon" onClick={props.toggle}></i></div>}
 
         {props.show ? 
         <Fragment>

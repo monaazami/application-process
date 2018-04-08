@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-import AdminProgress from './Components/AdminProgress/AdminProgress';
-
+//import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
-
-import ApplicantDashboard from '../src/ApplicantDashboard';
-
+import Routes from './Components/Router/Routes';
 
 class App extends Component {
-
-  render() {
-    return (
-      <div className="App">
-        <AdminProgress />        
-      </div>
-    );
-  }
-
+	render() {
+		return (
+			<div className="App container">
+				<Routes />
+			</div>
+		);
+	}
 }
 
 export default App;
