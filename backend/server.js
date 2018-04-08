@@ -13,10 +13,6 @@ app.use('/api/admin', admin);
 
 app.use(bodyParser.json());
 
-app.get('/', (req,res) => {
-	res.status(200).json({status: 200});
-});
-
 app.listen(port, () => {
 	console.log(`Server started on port ${port}`);
 });
