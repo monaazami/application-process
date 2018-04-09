@@ -1,5 +1,6 @@
 PRAGMA foreign_keys = ON;
 
+
 create table applicants (
       id              integer primary key,
       surname         string not null,
@@ -11,9 +12,8 @@ create table applicants (
       country         string not null,
       experience      string not null,
       itAcces         string not null,
-      hearAboutUs     string not null     
+      hearAbout     string not null     
 );
-
 
 create table steps (
     id                integer primary key,
