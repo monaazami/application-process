@@ -1,11 +1,83 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class ApplicationForm extends Component {
+	constructor() {
+		super();
+		this.state = {
+			name: '',
+			email: '',
+			city: '',
+			contactNum: '',
+			immigrationStatus: 'Yes',
+			country: '',
+			programmingExperience: 'None',
+			computerAccess: 'Yes',
+			howYouHearUs: '',
+		};
+	}
+
+	onChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	handleSubmit = e => {
+		e.preventDefault();
+		const {
+			name,
+			email,
+			city,
+			contactNum,
+			immigrationStatus,
+			country,
+			programmingExperience,
+			computerAccess,
+			howYouHearUs,
+		} = this.state;
+
+		console.log(
+			name,
+			email,
+			city,
+			contactNum,
+			immigrationStatus,
+			country,
+			programmingExperience,
+			computerAccess,
+			howYouHearUs
+		);
+
+		axios
+			.post('http://localhost:3001/api/formdata', {
+				name,
+				email,
+				city,
+				contactNum,
+				immigrationStatus,
+				country,
+				programmingExperience,
+				computerAccess,
+				howYouHearUs,
+			})
+			.then(res => {
+				console.log(res);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	};
 	render() {
 		return (
 			<div className="application-form container">
 				<h1 className="text-center mt-5 pt-4 pb-3 display-5">Student Application Form</h1>
-				<form className="mb-4 mt-5">
+				<form
+					className="mb-4 mt-5"
+					action="http://localhost:3001/api/formdata"
+					onSubmit={this.handleSubmit}
+					method="post"
+				>
 					<div className="form-group  mt-5">
 						<label htmlFor="name" className="lead">
 							Name *
@@ -15,7 +87,10 @@ class ApplicationForm extends Component {
 							name="name"
 							id="name"
 							className="form-control form-control-lg"
-							placeholder="What's your name?" required
+							placeholder="What's your name?"
+							value={this.state.name}
+							required
+							onChange={this.onChange}
 						/>
 						<small className="form-text text-muted">Please enter your first and last names.</small>
 					</div>
@@ -28,7 +103,10 @@ class ApplicationForm extends Component {
 							id="email"
 							name="email"
 							className="form-control form-control-lg"
-							placeholder="What's your email address?" required
+							placeholder="What's your email address?"
+							value={this.state.email}
+							required
+							onChange={this.onChange}
 						/>
 						<small className="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
@@ -41,7 +119,10 @@ class ApplicationForm extends Component {
 							id="city"
 							name="city"
 							className="form-control form-control-lg"
-							placeholder="In what city you live in?" required
+							placeholder="In what city you live in?"
+							value={this.state.city}
+							required
+							onChange={this.onChange}
 						/>
 						<small id="emailHelp" className="form-text text-muted">
 							E.g., London or Manchester
@@ -56,7 +137,10 @@ class ApplicationForm extends Component {
 							name="contactNum"
 							className="form-control form-control-lg"
 							id="contactNum"
-							placeholder="Enter your contact number" required
+							placeholder="Enter your contact number"
+							value={this.state.contactNum}
+							required
+							onChange={this.onChange}
 						/>
 						<small className="form-text text-muted">E.g., 07712345678 or 02079460637</small>
 					</div>
@@ -65,7 +149,14 @@ class ApplicationForm extends Component {
 						<label htmlor="immigrationStatus" className="lead">
 							Are you an asylum seeking or a refugee? *
 						</label>
-						<select className="form-control form-control-lg" id="immigrationStatus" name="immigrationStatus" required>
+						<select
+							className="form-control form-control-lg"
+							id="immigrationStatus"
+							name="immigrationStatus"
+							value={this.state.immigrationStatus}
+							required
+							onChange={this.onChange}
+						>
 							<option>Yes</option>
 							<option>No</option>
 						</select>
@@ -81,7 +172,10 @@ class ApplicationForm extends Component {
 							id="country"
 							name="country"
 							className="form-control form-control-lg"
-							placeholder="Where are you from?" required
+							placeholder="Where are you from?"
+							value={this.state.country}
+							required
+							onChange={this.onChange}
 						/>
 						<small className="form-text text-muted">E.g., Iran or Sudan</small>
 					</div>
@@ -92,7 +186,10 @@ class ApplicationForm extends Component {
 						<select
 							className="form-control form-control-lg"
 							id="programmingExperience"
-							name="programmingExperience" required
+							name="programmingExperience"
+							value={this.state.programmingExperience}
+							required
+							onChange={this.onChange}
 						>
 							<option>None</option>
 							<option>Basic</option>
@@ -107,22 +204,32 @@ class ApplicationForm extends Component {
 						<label htmlFor="computerAccess" className="lead">
 							Do you have access to a computer and the internet? *
 						</label>
-						<select className="form-control form-control-lg" id="computerAccess" name="computerAccess" required>
+						<select
+							className="form-control form-control-lg"
+							id="computerAccess"
+							name="computerAccess"
+							value={this.state.computerAccess}
+							required
+							onChange={this.onChange}
+						>
 							<option>Yes</option>
 							<option>No</option>
 						</select>
 						<small className="form-text text-muted">Please select yes or no</small>
 					</div>
 					<div className="form-group  mt-5">
-						<label htmlFor="howYouFindUs" className="lead">
+						<label htmlFor="howYouHearUs" className="lead">
 							How did you hear about us? *
 						</label>
 						<input
 							type="text"
-							id="howYouFindUs"
-							name="howYouFindUs"
+							id="howYouHearUs"
+							name="howYouHearUs"
 							className="form-control form-control-lg"
-							placeholder="How did you come across this course?" required
+							placeholder="How did you come across this course?"
+							value={this.state.howYouHearUs}
+							required
+							onChange={this.onChange}
 						/>
 						<small className="form-text text-muted">
 							E.g., from your friends or council or inernet search

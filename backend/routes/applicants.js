@@ -54,6 +54,8 @@ router.get('/:id', (req,res) => {
 	});
 });
 
-
+// router.get('/formData', (req, res) => {
+// 	res.send('FORM DATA')
+// })
 
 module.exports=router; 
