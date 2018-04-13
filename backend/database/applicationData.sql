@@ -8,7 +8,7 @@ create table applicants (
       email           string not null,
       city            string not null,
       tel             integer not null,
-      status          boolean DEFAULT false,
+      status          boolean DEFAULT false not null,
       country         string not null,
       experience      string not null,
       itAcces         string not null,
