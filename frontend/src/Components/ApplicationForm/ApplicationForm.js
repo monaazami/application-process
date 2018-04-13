@@ -108,7 +108,7 @@ class ApplicationForm extends Component {
 							required
 							onChange={this.onChange}
 						/>
-						<small className="form-text text-muted">We'll never share your email with anyone else.</small>
+						<small className="form-text text-muted">We&#39;ll never share your email with anyone else.</small>
 					</div>
 					<div className="form-group  mt-5">
 						<label htmlFor="city" className="lead">
