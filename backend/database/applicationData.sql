@@ -12,7 +12,7 @@ create table applicants (
       country         string not null,
       experience      string not null,
       itAcces         string not null,
-      hearAbout     string not null     
+      hearAbout       string not null     
 );
 
 create table steps (
@@ -23,3 +23,4 @@ create table steps (
     url               string default null,
     foreign key (applicant_id) references applicants(id)
 );
+
