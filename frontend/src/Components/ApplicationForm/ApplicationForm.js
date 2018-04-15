@@ -51,7 +51,7 @@ class ApplicationForm extends Component {
 		);
 
 		axios
-			.post('http://localhost:3001/api/formdata', {
+			.post('http://localhost:3001/api/applicants', {
 				fullName,
 				email,
 				city,
