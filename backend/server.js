@@ -9,15 +9,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const applicants = require('./routes/applicants');
-const formdata = require('./routes/formdata');
 const test = require('./routes/test');
 
 app.use('/api/applicants', applicants);
-app.use('./api/formdata', formdata)
-//form data testing route
-app.use('/api/formdata', formdata);
-app.use('/api/test', test);
-
 app.listen(port, () => {
 	console.log(`Server started on port ${port}`);
 });
