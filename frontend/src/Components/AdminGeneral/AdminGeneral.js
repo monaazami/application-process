@@ -28,10 +28,8 @@ class AdminGeneral extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.applicants);
 		const applicants = this.state.applicants;
-		console.log('render',applicants);
-		let applicantsList = applicants.map(function(applicant) {
+		let applicantsList = applicants.map(function(applicant, i) {
 			return <ApplicantItem 	
 						id={applicant.id}
 						firstname={applicant.firstname}
@@ -41,6 +39,7 @@ class AdminGeneral extends React.Component {
 						status={applicant.status}
 						experience={applicant.experience}
 						itAccess={applicant.itAccess}
+						key={i}
 					/>	
 			})
 		return (
