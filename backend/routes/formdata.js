@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 router.post('/', (req, res) => {
 	console.log(req.body)
-	const name = req.body.name,
+	const name = req.body.fullName,
 		email = req.body.email,
 		city = req.body.city,
 		tel = req.body.tel,
