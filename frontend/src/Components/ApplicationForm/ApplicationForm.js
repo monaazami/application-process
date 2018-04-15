@@ -75,7 +75,7 @@ class ApplicationForm extends Component {
 				<h1 className="text-center mt-5 pt-4 pb-3 display-5">Student Application Form</h1>
 				<form
 					className="mb-4 mt-5"
-					action="http://localhost:3001/api/formdata"
+					action="http://localhost:3001/api/applicants"
 					onSubmit={this.handleSubmit}
 					method="post"
 				>
@@ -245,5 +245,5 @@ class ApplicationForm extends Component {
 	}
 
   
-
+}
 export default ApplicationForm;
