@@ -5,15 +5,15 @@ class ApplicationForm extends Component {
 	constructor() {
 		super();
 		this.state = {
-			name: '',
+			fullName	: '',
 			email: '',
 			city: '',
-			contactNum: '',
-			immigrationStatus: 'Yes',
+			tel: '',
+			status: 'Yes',
 			country: '',
-			programmingExperience: 'None',
-			computerAccess: 'Yes',
-			howYouHearUs: '',
+			experience: 'None',
+			itAccess: 'Yes',
+			hearAbout: '',
 		};
 	}
 
@@ -26,40 +26,40 @@ class ApplicationForm extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const {
-			name,
+			fullName,
 			email,
 			city,
-			contactNum,
-			immigrationStatus,
+			tel,
+			status,
 			country,
-			programmingExperience,
-			computerAccess,
-			howYouHearUs,
+			experience,
+			itAccess,
+			hearAbout,
 		} = this.state;
 
 		console.log(
-			name,
+			fullName,
 			email,
 			city,
-			contactNum,
-			immigrationStatus,
+			tel,
+			status,
 			country,
-			programmingExperience,
-			computerAccess,
-			howYouHearUs
+			experience,
+			itAccess,
+			hearAbout
 		);
 
 		axios
 			.post('http://localhost:3001/api/formdata', {
-				name,
+				fullName,
 				email,
 				city,
-				contactNum,
-				immigrationStatus,
+				tel,
+				status,
 				country,
-				programmingExperience,
-				computerAccess,
-				howYouHearUs,
+				experience,
+				itAccess,
+				hearAbout,
 			})
 			.then(res => {
 				console.log(res);
@@ -79,16 +79,16 @@ class ApplicationForm extends Component {
 					method="post"
 				>
 					<div className="form-group  mt-5">
-						<label htmlFor="name" className="lead">
+						<label htmlFor="fullName" className="lead">
 							Name *
 						</label>
 						<input
 							type="text"
-							name="name"
-							id="name"
+							name="fullName"
+							id="fullName"
 							className="form-control form-control-lg"
 							placeholder="What's your name?"
-							value={this.state.name}
+							value={this.state.fullName}
 							required
 							onChange={this.onChange}
 						/>
@@ -129,16 +129,16 @@ class ApplicationForm extends Component {
 						</small>
 					</div>
 					<div className="form-group  mt-5">
-						<label htmlor="contactNum" className="lead">
+						<label htmlor="tel" className="lead">
 							Contact Number *
 						</label>
 						<input
 							type="tel"
-							name="contactNum"
+							name="tel"
 							className="form-control form-control-lg"
-							id="contactNum"
+							id="tel"
 							placeholder="Enter your contact number"
-							value={this.state.contactNum}
+							value={this.state.tel}
 							required
 							onChange={this.onChange}
 						/>
@@ -146,14 +146,14 @@ class ApplicationForm extends Component {
 					</div>
 
 					<div className="form-group  mt-5">
-						<label htmlor="immigrationStatus" className="lead">
+						<label htmlor="status" className="lead">
 							Are you an asylum seeking or a refugee? *
 						</label>
 						<select
 							className="form-control form-control-lg"
-							id="immigrationStatus"
-							name="immigrationStatus"
-							value={this.state.immigrationStatus}
+							id="status"
+							name="status"
+							value={this.state.status}
 							required
 							onChange={this.onChange}
 						>
@@ -180,14 +180,14 @@ class ApplicationForm extends Component {
 						<small className="form-text text-muted">E.g., Iran or Sudan</small>
 					</div>
 					<div className="form-group  mt-5">
-						<label htmlor="programmingExperience" className="lead">
+						<label htmlor="experience" className="lead">
 							Programming Experience *
 						</label>
 						<select
 							className="form-control form-control-lg"
-							id="programmingExperience"
-							name="programmingExperience"
-							value={this.state.programmingExperience}
+							id="experience"
+							name="experience"
+							value={this.state.experience}
 							required
 							onChange={this.onChange}
 						>
@@ -201,14 +201,14 @@ class ApplicationForm extends Component {
 						</small>
 					</div>
 					<div className="form-group  mt-5">
-						<label htmlFor="computerAccess" className="lead">
+						<label htmlFor="itAccess" className="lead">
 							Do you have access to a computer and the internet? *
 						</label>
 						<select
 							className="form-control form-control-lg"
-							id="computerAccess"
-							name="computerAccess"
-							value={this.state.computerAccess}
+							id="itAccess"
+							name="itAccess"
+							value={this.state.itAccess}
 							required
 							onChange={this.onChange}
 						>
@@ -218,16 +218,16 @@ class ApplicationForm extends Component {
 						<small className="form-text text-muted">Please select yes or no</small>
 					</div>
 					<div className="form-group  mt-5">
-						<label htmlFor="howYouHearUs" className="lead">
+						<label htmlFor="hearAbout" className="lead">
 							How did you hear about us? *
 						</label>
 						<input
 							type="text"
-							id="howYouHearUs"
-							name="howYouHearUs"
+							id="hearAbout"
+							name="hearAbout"
 							className="form-control form-control-lg"
 							placeholder="How did you come across this course?"
-							value={this.state.howYouHearUs}
+							value={this.state.hearAbout}
 							required
 							onChange={this.onChange}
 						/>
