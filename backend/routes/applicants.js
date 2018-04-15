@@ -34,6 +34,11 @@ router.get('/:id', (req,res) => {
 
 // add new applicant
 router.post("/", (req, res) => {
+	db.run(`INSERT INTO applicants (fullName, email, tel, status, country, experience, itAccess, hearAbout) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
+	 [req.body.fullName, req.body.email, req.body.tel, req.body.status, req.body.country, req.body.experience, req.body.itAccess, req.body.hearAbout], function(err) {
+    if (err) {
+      return console.log(err.message);
+    }
 	res.status(200).json({
 		where: 'From post request'
 });
