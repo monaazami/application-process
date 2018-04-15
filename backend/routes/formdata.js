@@ -7,13 +7,13 @@ router.post('/', (req, res) => {
 	const name = req.body.name,
 		email = req.body.email,
 		city = req.body.city,
-		contactNum = req.body.contactNum,
-		immigrationStatus = req.body.immigrationStatus,
+		tel = req.body.tel,
+		status = req.body.status,
 		country = req.body.country,
-		programmingExperience = req.body.programmingExperience,
-		computerAccess = req.body.computerAccess,
-		howYouHearUs = req.body.howYouHearUs;
+		experience = req.body.experience,
+		itAccess = req.body.itAccess,
+		hearAbout = req.body.hearAbout;
 
-	res.send(name + email + city + contactNum + country + programmingExperience + computerAccess + howYouHearUs);
+	res.send(name + email + city + tel + country + experience + itAccess + hearAbout);
 });
 module.exports = router;
