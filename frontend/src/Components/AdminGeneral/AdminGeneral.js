@@ -1,6 +1,8 @@
 import React from 'react';
 import ApplicantItem from './ApplicantItem';
 
+import './AdminGeneral.css';
+
 class AdminGeneral extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,10 +33,8 @@ class AdminGeneral extends React.Component {
 		const applicants = this.state.applicants;
 		let applicantsList = applicants.map(function(applicant, i) {
 			return <ApplicantItem 	
-						id={applicant.id}
 						firstname={applicant.firstname}
 						surname={applicant.surname}
-						email={applicant.email}
 						city={applicant.city}
 						status={applicant.status}
 						experience={applicant.experience}
@@ -43,11 +43,22 @@ class AdminGeneral extends React.Component {
 					/>	
 			})
 		return (
-			<section className='applicants-list'>
-				<ul>
+			<table className='applicants-table table-bordered'>
+				<thead>
+					<tr>
+						<th>FirstName</th>
+						<th>Surname</th>
+						<th>City</th>
+						<th>Refugee</th>
+						<th>Experience</th>
+						<th>IT Access</th>
+						<th>Progress</th>
+					</tr>
+				</thead>
+				<tbody>
 					{applicantsList}
-				</ul>
-			</section>
+				</tbody>		
+			</table>
 		);
 	}
 }
