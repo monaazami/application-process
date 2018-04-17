@@ -24,7 +24,7 @@ class ApplicationForm extends Component {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   handleSubmit = e => {
     e.preventDefault();
     const {
@@ -75,7 +75,16 @@ class ApplicationForm extends Component {
 
   hideThankyouMessage = () => {
 	this.setState({
-		submitted: false
+	  fullName: '',
+      email: '',
+      city: '',
+      tel: '',
+      status: 'Yes',
+      country: '',
+      experience: 'None',
+      itAccess: 'Yes',
+      hearAbout: '',
+      submitted: false
 	})
 	}
   render() {
@@ -267,7 +276,7 @@ class ApplicationForm extends Component {
         </div>
       );
     } else {
-      return <FormSubmittedMessage hideThankyouMessage={this.hideThankyouMessage}/>;
+      return <FormSubmittedMessage hideThankyouMessage={this.hideThankyouMessage} fullName={this.state.fullName} email={this.state.email}/>;
     }
   }
 }
