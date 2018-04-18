@@ -29,9 +29,6 @@ const Navbar = () => (
 				<li className="nav-item">
 					<Link to="/admin-progress">Admim-Progress</Link>
 				</li>
-				<li className="nav-item">
-					<Link to="/form-submitted-message">Form-submitted-message</Link>
-				</li>
 			</ul>
 		</div>
 	</nav>
