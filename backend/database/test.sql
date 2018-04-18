@@ -9,7 +9,7 @@ create table applicants (
       status          boolean DEFAULT false not null,
       country         string not null,
       experience      string not null,
-      itAcces         string not null,
+      itAccess         string not null,
       hearAbout       string not null     
 );
 
@@ -21,4 +21,10 @@ create table steps (
     url               string default null,
     foreign key (applicant_id) references applicants(id)
 );
+
+insert into applicants 
+  (fullname, email, city, tel, status, country, experience, itAccess, hearAbout)
+  values 
+  ('Arielle Corwin', 'email@email.com', 'London', '07463823311', 1 , 'Sudan', 'Beginner', 'yes', 'facebook');
+ 
 

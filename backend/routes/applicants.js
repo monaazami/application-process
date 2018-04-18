@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 const fakeApplicants = require('../fakeData/fakeApplicant.json');
 
-const filename = './database/db.sqlite';
+const filename = './database/test.sqlite';
 let db = new sqlite.Database(filename, (err) => {
   if (err) {
     return console.error(err.message);
