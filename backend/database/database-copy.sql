@@ -22,5 +22,3 @@ create table steps (
     foreign key (applicant_id) references applicants(id)
 );
 
-
-
