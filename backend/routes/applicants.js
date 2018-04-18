@@ -15,7 +15,7 @@ let db = new sqlite.Database(filename, (err) => {
 
 // get all applicants inside the database
 router.get('/', (req,res) => {
-	var sql = 'select * applicants';
+	let sql = 'select * applicants';
   db.all(sql, [], (err, rows) => {
     console.log((rows.length))
     res.status(200).json({
@@ -27,7 +27,7 @@ router.get('/', (req,res) => {
 
 // get one applicant through his id
 router.get('/:id', function (req, res) {
-  var sql = 'select * from applicants where id = ?';
+  let sql = 'select * from applicants where id = ?';
   db.all(sql, [Number(req.params.id)], (err, rows) => {
     if (typeof (Number(req.params.id)) !== 'number' || rows.length === 0) {
       res.send('400 - BAD REQUEST');
