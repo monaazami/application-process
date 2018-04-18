@@ -19,20 +19,6 @@ router.get('/', (req,res) => {
 	});
 });
 
-// get one applicant
-// router.get('/:id', (req,res) => {
-// 	if (req.params.id){
-// 		res.status(200).json({
-// 		fakeApplicant:fakeApplicants.filter(fakeApplicant => fakeApplicant.id === (req.params.id))
-// 		});
-// 	  }else {
-// 		res.status(200).json({
-// 		  fakeApplicants
-// 		});
-// 	  }
-// });
-
-
 // add new applicant
 router.post("/", (req, res) => {
 	var name = req.body.fullName
