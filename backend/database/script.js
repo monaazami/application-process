@@ -1,7 +1,9 @@
-const faker = require('faker');   
-const sqlite = require('sqlite3').verbose();
+// SCRIPT FOR INSERTING 20 FAKE PEOPLE INTO THE DATABASE
 
-const filename = './test.sqlite';
+const sqlite = require('sqlite3').verbose();
+const faker = require('faker');
+
+const filename = './database/db.sqlite';
 let db = new sqlite.Database(filename, (err) => {
   if (err) {
     return console.error(err.message);
@@ -13,19 +15,27 @@ let db = new sqlite.Database(filename, (err) => {
 let fakeApplicants = [];
 for (let i=0; i < 20; i++) {
 	fakeApplicants.push({
-			id:faker.random.uuid(),
 			fullname:faker.name.firstName(),
 			email:faker.internet.email(),
 			city:faker.address.city(),
-			tel:faker.phone.phoneNumber(),
+			tel:faker.phone.phoneNumberFormat(),
 			status:faker.random.boolean(),
 			country:faker.address.country(),
 			experience:faker.random.word(),
-			itAcces:faker.random.word(),
+			itAccess:faker.random.word(),
 			hearAbout:faker.random.word()
-	})
+	});
 };
 
-//INSERT DATA FROM ARRAY TO DATABASE
-
-
+//INSERT FAKE DATA FROM ARRAY TO DATABASE
+fakeApplicants.map(fake => {
+	let sql = `INSERT into applicants 
+	(fullname, email, city, tel, status, country, experience, itAccess, hearAbout)
+	values 
+	('${fake.fullname}', '${fake.email}', '${fake.city}', '${fake.tel}', '${fake.status}',
+	 '${fake.country}', '${fake.experience}', '${fake.itAccess}', '${fake.hearAbout}')`;
+	db.run(sql, [], function(err) {
+	 	if (err) {
+	 		return console.error(err.message)
+	 	}});
+});

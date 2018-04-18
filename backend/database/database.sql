@@ -22,9 +22,5 @@ create table steps (
     foreign key (applicant_id) references applicants(id)
 );
 
-insert into applicants 
-  (fullname, email, city, tel, status, country, experience, itAccess, hearAbout)
-  values 
-  ('Arielle Corwin', 'email@email.com', 'London', '07463823311', 1 , 'Sudan', 'Beginner', 'yes', 'facebook');
- 
+
 
