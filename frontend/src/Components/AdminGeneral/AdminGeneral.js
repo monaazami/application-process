@@ -31,8 +31,7 @@ class AdminGeneral extends React.Component {
 		const applicants = this.state.applicants;
 		let applicantsList = applicants.map(function(applicant, i) {
 			return <ApplicantItem 	
-						firstname={applicant.firstname}
-						surname={applicant.surname}
+						fullName={applicant.firstname}
 						city={applicant.city}
 						status={applicant.status}
 						experience={applicant.experience}
@@ -44,8 +43,7 @@ class AdminGeneral extends React.Component {
 			<table className='applicants-table table-bordered'>
 				<thead>
 					<tr>
-						<th>FirstName</th>
-						<th>Surname</th>
+						<th>Full Name</th>
 						<th>City</th>
 						<th>Refugee</th>
 						<th>Experience</th>
