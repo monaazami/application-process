@@ -10,15 +10,13 @@ class AdminGeneral extends React.Component {
 		this.state = {
 			applicants: []
 		}
-
-		this.getListofApplicants = this.getListofApplicants.bind(this);
 	}
 
 	componentDidMount() {
 		this.getListofApplicants()
 	}
 
-	getListofApplicants() {
+	getListofApplicants = () => {
 		fetch(`http://localhost:3001/api/applicants`)
 		.then(results => results.json())
 		.then(data => {
