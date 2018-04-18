@@ -14,9 +14,13 @@ let db = new sqlite.Database(filename, (err) => {
 
 // get all applicants
 router.get('/', (req,res) => {
-	res.status(200).json({
-		fakeApplicants: fakeApplicants 
-	});
+	var sql = 'select * applicants';
+  db.all(sql, [], (err, rows) => {
+    console.log((rows.length))
+    res.status(200).json({
+      applicants: rows
+    });
+  });
 });
 
 // get one applicant
@@ -34,13 +38,14 @@ router.get('/:id', (req,res) => {
 
 // add new applicant
 router.post("/", (req, res) => {
-	db.run(`INSERT INTO applicants (fullName, email, tel, status, country, experience, itAccess, hearAbout) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
-	 [req.body.fullName, req.body.email, req.body.tel, req.body.status, req.body.country, req.body.experience, req.body.itAccess, req.body.hearAbout], function(err) {
-    if (err) {
+	 db.run(`INSERT INTO into applicants (fullName, email, tel, status, country, experience, itAcess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?)`, [req.body.fullName, req.body.email, req.body.tel, req.body.status, req.body.country, req.body.experience, req.body.itAccess, req.body.hearAbout], (req, res) =>{
+		if (err) {
       return console.log(err.message);
     }
-	res.status(200).json({
-		where: 'From post request'
+		res.status(200).json({
+			where: 'From post request'
+	 })
+
 });
   
 });
