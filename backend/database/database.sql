@@ -5,7 +5,7 @@ create table applicants (
       fullname         string not null,
       email           string not null,
       city            string not null,
-      tel             integer not null,
+      tel             string not null,
       status          boolean DEFAULT false not null,
       country         string not null,
       experience      string not null,
