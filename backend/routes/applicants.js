@@ -12,7 +12,8 @@ let db = new sqlite.Database(filename, (err) => {
   console.log('Connected to the in-memory application database.');
 });
 
-// get all applicants
+
+// get all applicants inside the database
 router.get('/', (req,res) => {
 	var sql = 'select * applicants';
   db.all(sql, [], (err, rows) => {
@@ -23,18 +24,23 @@ router.get('/', (req,res) => {
   });
 });
 
-// get one applicant
-router.get('/:id', (req,res) => {
-	if (req.params.id){
-		res.status(200).json({
-		fakeApplicant:fakeApplicants.filter(fakeApplicant => fakeApplicant.id === (req.params.id))
-		});
-	  }else {
-		res.status(200).json({
-		  fakeApplicants
-		});
-	  }
+
+// get one applicant through his id
+router.get('/:id', function (req, res) {
+  var sql = 'select * from applicants where id = ?';
+  db.all(sql, [Number(req.params.id)], (err, rows) => {
+    if (typeof (Number(req.params.id)) !== 'number' || rows.length === 0) {
+      console.log('error');
+      res.send('400 - BAD REQUEST');
+    } else {
+      console.log(rows)
+      res.status(200).json({
+        applicants: rows
+      });
+    };
+  })
 });
+
 
 // add new applicant
 router.post("/", (req, res) => {
@@ -49,6 +55,7 @@ router.post("/", (req, res) => {
 });
   
 });
+
 
 
 module.exports = router ;

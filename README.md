@@ -11,6 +11,7 @@ This application has been developed for mainly two types of users
 
 **Code Your Future Admission Team** – They will be able to provide all the imformation to the potential student so applicants can know what they are getting into. They will also be able to track applicants’ application process and will be able to guide them along the way.
 
+
 ## Team Members
 
 ###  Olena 
