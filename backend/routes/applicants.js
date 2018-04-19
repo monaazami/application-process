@@ -21,9 +21,12 @@ router.get('/', (req,res) => {
 
 // add new applicant
 router.post("/", (req, res) => {
-	var name = req.body.fullName
 	
-	res.send(name)
 });
+
+// send email to applicants
+router.post('/', (req, res) => {
+
+})
 
 module.exports = router ;
