@@ -16,7 +16,7 @@ const applicant = props => (
           </i>
         )}
     </div>
-    <ApplicantDetails show={props.show} />
+    <ApplicantDetails />
   </Fragment>
   );
 

@@ -17,7 +17,6 @@ let db = new sqlite.Database(filename, (err) => {
 router.get('/', (req,res) => {
 	let sql = 'select * applicants';
   db.all(sql, [], (err, rows) => {
-    console.log((rows.length))
     res.status(200).json({
       applicants: rows
     });
