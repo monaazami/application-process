@@ -20,16 +20,16 @@ const Navbar = () => (
 		</button>
 		<div className="collapse navbar-collapse" id="navbarNav">
 			<ul className="navbar-nav">
-				<li className="nav-item active">
+				<li className="nav-item active px-4">
 					<Link to="/">Application-form</Link>
 				</li>
-				<li className="nav-item">
+				<li className="nav-item px-4">
 					<Link to="/applicant-dashboard">Applicant-dashboard</Link>
 				</li>
-				<li className="nav-item">
+				<li className="nav-item px-4">
 					<Link to="/admin-general">Admin-General</Link>
 				</li>
-				<li className="nav-item">
+				<li className="nav-item px-4">
 					<Link to="/admin-progress">Admim-Progress</Link>
 				</li>
 			</ul>
