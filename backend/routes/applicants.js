@@ -39,14 +39,6 @@ router.get('/', (req,res) => {
 	}]);
 });
 
-<<<<<<< HEAD
-// add new applicant
-router.post("/", (req, res) => {
-	var name = req.body.fullName
-	
-	res.send(name)
-});
-=======
 router.get('/:id', (req,res) => {
 	res.json({
 		id: 3432,
@@ -63,6 +55,5 @@ router.get('/:id', (req,res) => {
 });
 
 
->>>>>>> origin
 
 module.exports=router; 
