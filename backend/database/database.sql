@@ -1,16 +1,15 @@
 PRAGMA foreign_keys = ON;
 
-
 create table applicants (
       id              integer primary key,
       fullname         string not null,
       email           string not null,
       city            string not null,
-      tel             integer not null,
+      tel             string not null,
       status          boolean DEFAULT false not null,
       country         string not null,
       experience      string not null,
-      itAcces         string not null,
+      itAccess         string not null,
       hearAbout       string not null     
 );
 
@@ -22,4 +21,6 @@ create table steps (
     url               string default null,
     foreign key (applicant_id) references applicants(id)
 );
+
+
 

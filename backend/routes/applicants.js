@@ -2,8 +2,6 @@ const express = require('express');
 const sqlite = require('sqlite3').verbose();
 const router = require('express').Router();
 
-const fakeApplicants = require('../fakeData/fakeApplicant.json');
-
 const filename = './database/db.sqlite';
 let db = new sqlite.Database(filename, (err) => {
   if (err) {
@@ -12,18 +10,14 @@ let db = new sqlite.Database(filename, (err) => {
   console.log('Connected to the in-memory application database.');
 });
 
-// get all applicants
+//GET ALL APPLICANTS
 router.get('/', (req,res) => {
-	res.status(200).json({
-		fakeApplicants: fakeApplicants 
+	let sql = 'select * from applicants';
+	db.all(sql, [], (err, rows) => {
+		res.status(200).json({
+			applicants: rows
+		});
 	});
-});
-
-// add new applicant
-router.post("/", (req, res) => {
-	var name = req.body.fullName
-	
-	res.send(name)
 });
 
 module.exports = router ;
