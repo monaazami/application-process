@@ -1,59 +1,21 @@
 const router = require('express').Router();
 
-router.get('/', (req,res) => {
-	res.json([{
-		id: '3432',
-		name: 'John Smith',
-		email: 'johnsmith@gmail.com',
-		city: 'London',
-		tel: '98483247282',
-		status: 'Asylum seeker',
-		country: 'Eritrea',
-		experience: 'very little',
-		itAcess: true,
-		hearAbout: 'website'
-	},
-	{
-		id: '3433',
-		name: 'John Smith',
-		email: 'johnsmith@gmail.com',
-		city: 'London',
-		tel: '98483247282',
-		status: 'Asylum seeker',
-		country: 'Eritrea',
-		experience: 'very little',
-		itAcess: true,
-		hearAbout: 'website'
-	},
-	{
-		id: '3434',
-		name: 'John Smith',
-		email: 'johnsmith@gmail.com',
-		city: 'London',
-		tel: '98483247282',
-		status: 'Asylum seeker',
-		country: 'Eritrea',
-		experience: 'very little',
-		itAcess: true,
-		hearAbout: 'website'
-	}]);
+const filename = './database/db.sqlite';
+let db = new sqlite.Database(filename, (err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Connected to the in-memory application database.');
 });
 
-router.get('/:id', (req,res) => {
-	res.json({
-		id: 3432,
-		name: 'Exact Exact',
-		email: 'exact@gmail.com',
-		city: 'London',
-		tel: '98483247282',
-		status: 'Asylum seeker',
-		country: 'Eritrea',
-		experience: 'very little',
-		itAcess: true,
-		hearAbout: 'website'
+//GET ALL APPLICANTS
+router.get('/', (req,res) => {
+	let sql = 'select * from applicants';
+	db.all(sql, [], (err, rows) => {
+		res.status(200).json({
+			applicants: rows
+		});
 	});
 });
 
-
-
-module.exports=router; 
+module.exports = router ;
