@@ -8,6 +8,6 @@ To Run
 
 Api end-point
 ============
-2. `localhost:3002/api/applicants` , to get all the inserted data.
-3. `localhost:3002/api/applicants`, to post the data .
+2. `localhost:3001/api/applicants` , to get all the inserted data.
+3. `localhost:3001/api/applicants`, to post the data .
 
