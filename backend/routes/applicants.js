@@ -33,26 +33,24 @@ router.get('/:id', function (req, res) {
   })
 });
 
-// add new applicant
-
+// add new applicant route
 router.post('/', (req, res) => {
-	console.log(req.body);
 	const { fullName, email, city, tel, country, experience, itAccess, hearAbout } = req.body;
-	let status;
+
+	// convert req.body.status to boolean use 1 for true and 0 for false 
+	let newStatus;
 	if (req.body.status === 'Yes') {
-		status = true;
+		newStatus = 1;
 	} else {
-		status = false;
+		newStatus = 0;
 	}
-	console.log(hearAbout);
-	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [fullName, email, tel, status, country, experience, itAccess, hearAbout], (err) =>{
+	
+	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+	[fullName, email, city, tel, newStatus, country, experience, itAccess, hearAbout], (err) =>{
 	if (err) {
 		console.log(err)
 		return res.send('400 - BAD REQUEST').status(400);
   }
-  	// res.status(200).json({
-  			// where: 'From post request'
- 		// })
 	}); 
 });
 
