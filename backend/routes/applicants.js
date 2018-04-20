@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sqlite = require('sqlite3').verbose();
 
 const filename = './database/db.sqlite';
 let db = new sqlite.Database(filename, (err) => {
