@@ -15,7 +15,7 @@ let db = new sqlite.Database(filename, (err) => {
 let fakeApplicants = [];
 for (let i=0; i < 20; i++) {
 	fakeApplicants.push({
-			fullname:faker.name.firstName(),
+			fullName:faker.name.firstName(),
 			email:faker.internet.email(),
 			city:faker.address.city(),
 			tel:faker.phone.phoneNumberFormat(),
@@ -30,9 +30,9 @@ for (let i=0; i < 20; i++) {
 //INSERT FAKE DATA FROM ARRAY TO DATABASE
 fakeApplicants.map(fake => {
 	let sql = `INSERT into applicants 
-	(fullname, email, city, tel, status, country, experience, itAccess, hearAbout)
+	(fullName, email, city, tel, status, country, experience, itAccess, hearAbout)
 	values 
-	('${fake.fullname}', '${fake.email}', '${fake.city}', '${fake.tel}', '${fake.status}',
+	('${fake.fullName}', '${fake.email}', '${fake.city}', '${fake.tel}', '${fake.status}',
 	 '${fake.country}', '${fake.experience}', '${fake.itAccess}', '${fake.hearAbout}')`;
 	db.run(sql, [], function(err) {
 	 	if (err) {

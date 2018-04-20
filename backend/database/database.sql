@@ -2,7 +2,7 @@ PRAGMA foreign_keys = ON;
 
 create table applicants (
       id              integer primary key,
-      fullname         string not null,
+      fullName         string not null,
       email           string not null,
       city            string not null,
       tel             string not null,
