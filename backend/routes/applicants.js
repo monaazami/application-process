@@ -18,9 +18,6 @@ router.get('/', (req,res) => {
 	});
 });
 
-<<<<<<< HEAD
-module.exports = router ;
-=======
 // get one applicant through his id
 router.get('/:id', function (req, res) {
 	let sql = 'select * from applicants where id = ?'; 
@@ -59,4 +56,3 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router ;
->>>>>>> refs/remotes/origin/develop
