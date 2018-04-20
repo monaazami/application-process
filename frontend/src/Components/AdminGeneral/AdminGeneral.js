@@ -21,7 +21,7 @@ class AdminGeneral extends React.Component {
 		.then(results => results.json())
 		.then(data => {
 			this.setState({
-				applicants: data.fakeApplicants
+				applicants: data.applicants
 			})
 		})
 		.catch(err => console.log(err))
@@ -31,7 +31,7 @@ class AdminGeneral extends React.Component {
 		const applicants = this.state.applicants;
 		let applicantsList = applicants.map(function(applicant, i) {
 			return <ApplicantItem 	
-						fullName={applicant.firstname}
+						fullName={applicant.fullName}
 						city={applicant.city}
 						status={applicant.status}
 						experience={applicant.experience}
