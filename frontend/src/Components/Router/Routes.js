@@ -16,6 +16,7 @@ const Routes = () => (
 			<Route exact path="/admin-general" component={AdminGeneral} />
 			<Route exact path="/admin-progress" component={AdminProgress} />
       		<Route exact path="/form-submitted-message" component={FormSubmittedMessage} />
+      <Route path='/admin-progress/:id' component={AdminProgress} />
 		</div>
 	</Router>
 );
