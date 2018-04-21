@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ApplicantItem = ({id, fullName, email, city, status, experience, itAccess}) => {
 	return(
 		<tr>
-			<td><Link to={`/admin-progress/${id}`}>{fullName}</Link></td>
+			<td><Link to={`/applicants/${id}`}>{fullName}</Link></td>
 			<td>{city}</td>
 			<td className={status ? 'sucess' : 'danger'}>{status ? 'yes' : 'no'}</td>
 			<td>{experience}</td>
