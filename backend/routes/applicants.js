@@ -37,7 +37,7 @@ router.get('/:id', function (req, res) {
 router.post('/', (req, res) => {
 	const { fullName, email, city, tel, country, experience, itAccess, hearAbout } = req.body;
 
-	// convert req.body.status to boolean use 1 for true and 0 for false 
+	// convert req.body.status to boolean, use 1 for true and 0 for false 
 	let newStatus;
 	if (req.body.status === 'Yes') {
 		newStatus = 1;
