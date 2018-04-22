@@ -31,6 +31,7 @@ class AdminGeneral extends React.Component {
 		const applicants = this.state.applicants;
 		let applicantsList = applicants.map(function(applicant, i) {
 			return <ApplicantItem 	
+						id={applicant.id}
 						fullName={applicant.fullName}
 						city={applicant.city}
 						status={applicant.status}
