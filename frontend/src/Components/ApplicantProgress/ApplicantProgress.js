@@ -8,11 +8,11 @@ class ApplicantProgress extends React.Component {
 
 		this.state = {
 			applicantData: [],
-			id: 5
+			id: props.match.params.id
 		}
 	}
 	componentDidMount() {
-		this.getApplicantData(5)
+		this.getApplicantData(this.state.id)
 	}
 
 	getApplicantData = (id) => {
@@ -20,24 +20,33 @@ class ApplicantProgress extends React.Component {
 		.then(results => results.json())
 		.then(data => {
 			this.setState({
-				applicantData: data.applicants
+				applicantData: data.applicants[0]
 			})
 		})
 		.catch(err => console.log(err))
 	}
 
 	render() {
+		const data = this.state.applicantData;
 		return (
 			<div>
 				<section className='applicant-detailed'>
 					<h3> Detailed Information </h3>
-					<p> Full Name: {this.state.applicantData.fullName} </p>
+					<p> <b> Full Name: </b> {data.fullName} </p>
+					<p> <b> Email: </b> {data.email} </p>
+					<p> <b> City: </b> {data.city} </p>
+					<p> <b> Phone number: </b> {data.tel} </p>
+					<p> <b> Refugee: </b> {data.status ? 'Yes' : 'No'} </p>
+					<p> <b> Country of origin: </b> {data.country} </p>
+					<p> <b> Experience: </b> {data.experience} </p>
+					<p> <b> Access to computer and internet: </b> {data.itAccess} </p>
+					<p> <b> Heard about CYF: </b> {data.hearAbout} </p>
 				</section>
 				<section className='applicant-progress'>
 					<h3> Progress </h3>
-					{stepsArray.map((step, i) => {
+					{stepsArray.map((step, i) => (
 						<ApplicantStep stepNumber={step.step} details={step.details} key={i} />
-					})}
+					))}
 				</section>
 			</div>
 		)
