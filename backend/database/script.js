@@ -19,7 +19,7 @@ for (let i=0; i < 20; i++) {
 			email:faker.internet.email(),
 			city:faker.address.city(),
 			tel:faker.phone.phoneNumberFormat(),
-			status:0,
+			status:faker.random.boolean(),
 			country:faker.address.country(),
 			experience:faker.random.word(),
 			itAccess:faker.random.word(),

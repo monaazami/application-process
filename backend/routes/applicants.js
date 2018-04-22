@@ -37,23 +37,23 @@ router.get('/:id', function (req, res) {
 // add new applicant
 
 router.post('/', (req, res) => {
+	console.log(req.body);
 	const { fullName, email, city, tel, country, experience, itAccess, hearAbout } = req.body;
-
-	// convert req.body.status to boolean use 1 for true and 0 for false 
-	let newStatus;
+	let status;
 	if (req.body.status === 'Yes') {
-		newStatus = 1;
+		status = true;
 	} else {
-		newStatus = 0;
+		status = false;
 	}
-	
-	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) 
-	Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-	[fullName, email, city, tel, newStatus, country, experience, itAccess, hearAbout], (err) =>{
+	console.log(hearAbout);
+	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [fullName, email, tel, status, country, experience, itAccess, hearAbout], (err) =>{
 	if (err) {
 		console.log(err)
 		return res.send('400 - BAD REQUEST').status(400);
   }
+  	// res.status(200).json({
+  			// where: 'From post request'
+ 		// })
 	}); 
 });
 
