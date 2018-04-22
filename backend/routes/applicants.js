@@ -37,14 +37,16 @@ router.get('/:id', function (req, res) {
 router.post('/', (req, res) => {
 	const { fullName, email, city, tel, status, country, experience, itAccess, hearAbout } = req.body;
 
-	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-	[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], (err) =>{
-	if (err) {
-		return res.send('400 - BAD REQUEST').status(400);
-	}
-	return res.json({
-		message: "Data successfully submitted!"
-	})
+	db.run(`INSERT INTO applicants
+						(fullName, email, city, tel, status, country, experience, itAccess, hearAbout)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+			[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], function(err) {
+		if (err) {
+			return res.send('400 - BAD REQUEST').status(400);
+		}
+		return res.json({
+			id: this.lastID
+		})
 	}); 
 });
 
