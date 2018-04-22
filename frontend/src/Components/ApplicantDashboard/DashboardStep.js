@@ -1,12 +1,20 @@
 import React from 'react';
 import StatusMessage from './StatusMessage';
 
-const DashboardStep = ({ stepNumber, details }) => {
+const DashboardStep = ({ stepNumber, details, url, addUrl}) => {
+  console.log(url)
   let submitBlock;
   if (stepNumber !== 0) {
     submitBlock = (
       <div>
-        <input type='text' placeholder='Add url here' required />
+        <input 
+          type='text'
+          placeholder='Add url here' 
+          required
+          name="url"
+          value={url}
+          onChange={addUrl}
+          />
         <button className='btn btn-secondary' type='submit'>Submit step</button>
       </div>
     );
