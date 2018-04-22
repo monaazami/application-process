@@ -10,7 +10,7 @@ class ApplicationForm extends Component {
       email: '',
       city: '',
       tel: '',
-      status: 'Yes',
+      status: 1,
       country: '',
       experience: 'None',
       itAccess: 'Yes',
@@ -21,7 +21,7 @@ class ApplicationForm extends Component {
 
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -38,19 +38,6 @@ class ApplicationForm extends Component {
       itAccess,
       hearAbout,
     } = this.state;
-
-    console.log(
-      fullName,
-      email,
-      city,
-      tel,
-      status,
-      country,
-      experience,
-      itAccess,
-      hearAbout,
-    );
-
     axios
       .post('http://localhost:3001/api/applicants', {
         fullName,
@@ -79,7 +66,7 @@ class ApplicationForm extends Component {
       email: '',
       city: '',
       tel: '',
-      status: 'Yes',
+      status: 1,
       country: '',
       experience: 'None',
       itAccess: 'Yes',
@@ -185,8 +172,8 @@ class ApplicationForm extends Component {
                 required
                 onChange={this.onChange}
               >
-                <option>Yes</option>
-                <option>No</option>
+                <option value={1}>Yes</option>
+                <option value={0}>No</option>
               </select>
               <small className="form-text text-muted">
                 Please select yes or no

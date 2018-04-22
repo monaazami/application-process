@@ -35,22 +35,16 @@ router.get('/:id', function (req, res) {
 
 // add new applicant route
 router.post('/', (req, res) => {
-	const { fullName, email, city, tel, country, experience, itAccess, hearAbout } = req.body;
+	const { fullName, email, city, tel, status, country, experience, itAccess, hearAbout } = req.body;
 
-	// convert req.body.status to boolean, use 1 for true and 0 for false 
-	let newStatus;
-	if (req.body.status === 'Yes') {
-		newStatus = 1;
-	} else {
-		newStatus = 0;
-	}
-	
 	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-	[fullName, email, city, tel, newStatus, country, experience, itAccess, hearAbout], (err) =>{
+	[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], (err) =>{
 	if (err) {
-		console.log(err)
 		return res.send('400 - BAD REQUEST').status(400);
-  }
+	}
+	return res.json({
+		message: "Data successfully submitted!"
+	})
 	}); 
 });
 
