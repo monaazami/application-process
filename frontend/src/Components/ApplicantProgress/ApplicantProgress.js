@@ -1,6 +1,7 @@
 import React from 'react';
 import stepsArray from '../ApplicantDashboard/stepsArray';
 import ApplicantStep from './ApplicantStep';
+import './ApplicantProgress.css';
 
 class ApplicantProgress extends React.Component {
 	constructor(props) {

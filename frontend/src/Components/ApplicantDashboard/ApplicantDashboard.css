@@ -5,3 +5,8 @@
 .msg-approved {
 	color: green;
 }
+
+.dashboard-step {
+	border-top: 1px solid grey;
+	margin-bottom: 1rem;
+}

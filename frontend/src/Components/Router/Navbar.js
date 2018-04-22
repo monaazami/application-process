@@ -29,9 +29,6 @@ const Navbar = () => (
 				<li className="nav-item">
 					<Link to="/applicants">Admin-General</Link>
 				</li>
-				<li className="nav-item">
-					<Link to="/admin-progress">Admim-Progress</Link>
-				</li>
 			</ul>
 		</div>
 	</nav>
