@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../../logo-cyf.png';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => (
 	<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,16 +22,13 @@ const Navbar = () => (
 		<div className="collapse navbar-collapse" id="navbarNav">
 			<ul className="navbar-nav">
 				<li className="nav-item active">
-					<Link to="/">Application-form</Link>
+					<Link to="/">Application Form </Link>
 				</li>
 				<li className="nav-item">
-					<Link to="/applicant-dashboard">Applicant-dashboard</Link>
+					<Link to="/applicant-dashboard">Applicant Dashboard</Link>
 				</li>
 				<li className="nav-item">
-					<Link to="/admin-general">Admin-General</Link>
-				</li>
-				<li className="nav-item">
-					<Link to="/admin-progress">Admim-Progress</Link>
+					<Link to="/applicants">Admin</Link>
 				</li>
 			</ul>
 		</div>
