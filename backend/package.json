@@ -14,8 +14,7 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "sqlite3": "^4.0.0",
-    "proxy": "http://localhost:3001)/"
+    "sqlite3": "^4.0.0"
   },
   "devDependencies": {
     "faker": "^4.1.0",

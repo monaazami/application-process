@@ -1,6 +1,5 @@
-const express = require('express');
-const sqlite = require('sqlite3').verbose();
 const router = require('express').Router();
+const sqlite = require('sqlite3').verbose();
 
 const filename = './database/db.sqlite';
 let db = new sqlite.Database(filename, (err) => {
@@ -34,26 +33,18 @@ router.get('/:id', function (req, res) {
   })
 });
 
-// add new applicant
-
+// add new applicant route
 router.post('/', (req, res) => {
-	console.log(req.body);
-	const { fullName, email, city, tel, country, experience, itAccess, hearAbout } = req.body;
-	let status;
-	if (req.body.status === 'Yes') {
-		status = true;
-	} else {
-		status = false;
-	}
-	console.log(hearAbout);
-	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [fullName, email, tel, status, country, experience, itAccess, hearAbout], (err) =>{
+	const { fullName, email, city, tel, status, country, experience, itAccess, hearAbout } = req.body;
+
+	db.run(`INSERT INTO applicants (fullName, email, city, tel, status, country, experience, itAccess, hearAbout) Values (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+	[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], (err) =>{
 	if (err) {
-		console.log(err)
 		return res.send('400 - BAD REQUEST').status(400);
-  }
-  	// res.status(200).json({
-  			// where: 'From post request'
- 		// })
+	}
+	return res.json({
+		message: "Data successfully submitted!"
+	})
 	}); 
 });
 
