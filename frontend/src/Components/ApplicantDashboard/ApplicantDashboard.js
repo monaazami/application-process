@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import stepsArray from './stepsArray';
 import DashboardStep from './DashboardStep';
-import './ApplicantDashboard.css';
+import helpers from '../../helpers'
 
 class ApplicantDashboard extends Component {
   state={
-    steps: stepsArray,
+    steps: helpers.stepsArray,
     disable: false,
   }
  
@@ -17,6 +16,8 @@ class ApplicantDashboard extends Component {
       ...this.state.steps[stepIndex]
     };
     step.url= e.target.value;
+    console.log(step)
+    helpers.ValidURL(e.target.value, step.link)
     const steps = [...this.state.steps];
     steps[stepIndex] = step;
     this.setState({
@@ -29,10 +30,11 @@ class ApplicantDashboard extends Component {
       <section className='applicant-dashboard'>
         <h2>Your Progress</h2>
         {this.state.steps.map((step, i) => (
-          <DashboardStep 
+          <DashboardStep
           stepNumber={step.step} 
           details={step.details}
-          url={this.state.steps[i].url} 
+          link={step.link}                    
+          url={step.url} 
           addUrl={(e) => this.submitUrlHandler(e, step.step)}
           key={i} />
         ))}
