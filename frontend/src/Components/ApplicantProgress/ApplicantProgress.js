@@ -1,5 +1,5 @@
 import React from 'react';
-import stepsArray from '../ApplicantDashboard/stepsArray';
+import helpers from '../../helpers'
 import ApplicantStep from './ApplicantStep';
 import './ApplicantProgress.css';
 
@@ -45,7 +45,7 @@ class ApplicantProgress extends React.Component {
 				</section>
 				<section className='applicant-progress'>
 					<h3> Progress </h3>
-					{stepsArray.map((step, i) => (
+					{helpers.stepsArray.map((step, i) => (
 						<ApplicantStep stepNumber={step.step} details={step.details} key={i} />
 					))}
 				</section>
