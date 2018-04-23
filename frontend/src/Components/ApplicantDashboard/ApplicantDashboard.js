@@ -6,25 +6,34 @@ import './ApplicantDashboard.css';
 class ApplicantDashboard extends Component {
   state={
     steps: stepsArray,
+    disable: false,
   }
  
-  addUrlHandler = (e) => {
-    e.preventDefault();
-    console.log('from add url')
-    this.setState({
-      [e.target.name]:e.target.value,
+  submitUrlHandler = (e, id) => {
+    const stepIndex = this.state.steps.findIndex(myStep => {
+      return myStep.step === id;
     })
-  }
+    const step = {
+      ...this.state.steps[stepIndex]
+    };
+    step.url= e.target.value;
+    const steps = [...this.state.steps];
+    steps[stepIndex] = step;
+    this.setState({
+     steps: steps
+    });
+  };
+
   render(){
     return(
       <section className='applicant-dashboard'>
         <h2>Your Progress</h2>
-        {stepsArray.map((step, i) => (
+        {this.state.steps.map((step, i) => (
           <DashboardStep 
           stepNumber={step.step} 
           details={step.details}
           url={this.state.steps[i].url} 
-          addUrl={this.addUrlHandler}
+          addUrl={(e) => this.submitUrlHandler(e, step.step)}
           key={i} />
         ))}
       </section>
