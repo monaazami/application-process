@@ -17,6 +17,7 @@ class ApplicantProgress extends React.Component {
 	}
 
 	getApplicantData = (id) => {
+		console.log(id);
 		fetch(`http://localhost:3001/api/applicants/${id}`)
 		.then(results => results.json())
 		.then(data => {
