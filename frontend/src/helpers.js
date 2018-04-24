@@ -3,8 +3,8 @@ exports.stepsArray = [
 	{status: '', alert: '', step: 1, details: 'Khan Academy: Basics Tutorial /  Solo Learn: Basics Tutorial', link:'https://www.khanacademy.org/', url: ''},
 	{status: '', alert: '', step: 2, details: 'Code Academy: HTML & CSS Tutorial', link:'https://www.codecademy.com/', url: ''},
 	{status: '', alert: '', step: 3, details: 'Code Academy: Responsive Design Tutorial', link:'https://www.codecademy.com/', url: ''},
-	{status: '', alert: '', step: 4, details: 'Create a Web Page', link: " ",  url: ''},
-	{status: '', alert: '', step: 5, details: 'Iterate a Web Page', link: " ",  url: ''}
+	{status: '', alert: '', step: 4, details: 'Create a Web Page', link: " ",  url: 'https://codepen.io/'},
+	{status: '', alert: '', step: 5, details: 'Iterate a Web Page', link: " ",  url: 'https://codepen.io/'}
 ];
 
 exports.ValidURL = (str) => {
