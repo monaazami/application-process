@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
 const FormSubmittedMessage = ({ submitted, hideThankyouMessage, fullName, email, id }) => {
-  console.log('id', id);
-  console.log('submitted', submitted);
   return (
     <div className={classnames('container text-center', {
       'block': (submitted === true),

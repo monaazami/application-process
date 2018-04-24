@@ -56,8 +56,7 @@ class ApplicationForm extends Component {
       .then(res => {
         this.setState({
           submitted: true,
-          id: res.id
-
+          id: res.data.id
         });
       })
       .catch(error => {
