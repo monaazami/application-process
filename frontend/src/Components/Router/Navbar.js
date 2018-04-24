@@ -25,7 +25,7 @@ const Navbar = () => (
 					<Link to="/">Application Form </Link>
 				</li>
 				<li className="nav-item">
-					<Link to="/applicant-dashboard/:id">Applicant Dashboard</Link>
+					<Link to="/applicant-dashboard">Applicant Dashboard</Link>
 				</li>
 				<li className="nav-item">
 					<Link to="/applicants">Admin</Link>
