@@ -1,10 +1,10 @@
 exports.stepsArray = [
-	{alert: '', step: 0, details: 'Website Application', link: " ", url: ''},
-	{alert: '', step: 1, details: 'Khan Academy: Basics Tutorial /  Solo Learn: Basics Tutorial', link:'https://www.khanacademy.org/', url: ''},
-	{alert: '', step: 2, details: 'Code Academy: HTML & CSS Tutorial', link:'https://www.codecademy.com/', url: ''},
-	{alert: '', step: 3, details: 'Code Academy: Responsive Design Tutorial', link:'https://www.codecademy.com/', url: ''},
-	{alert: '', step: 4, details: 'Create a Web Page', link: " ",  url: ''},
-	{alert: '', step: 5, details: 'Iterate a Web Page', link: " ",  url: ''}
+	{status: '', alert: '', step: 0, details: 'Website Application', link: " ", url: ''},
+	{status: '', alert: '', step: 1, details: 'Khan Academy: Basics Tutorial /  Solo Learn: Basics Tutorial', link:'https://www.khanacademy.org/', url: ''},
+	{status: '', alert: '', step: 2, details: 'Code Academy: HTML & CSS Tutorial', link:'https://www.codecademy.com/', url: ''},
+	{status: '', alert: '', step: 3, details: 'Code Academy: Responsive Design Tutorial', link:'https://www.codecademy.com/', url: ''},
+	{status: '', alert: '', step: 4, details: 'Create a Web Page', link: " ",  url: ''},
+	{status: '', alert: '', step: 5, details: 'Iterate a Web Page', link: " ",  url: ''}
 ];
 
 exports.ValidURL = (str) => {
