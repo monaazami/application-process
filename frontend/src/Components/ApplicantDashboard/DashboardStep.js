@@ -2,7 +2,7 @@ import React from 'react';
 import StatusMessage from './StatusMessage';
 
 
-const DashboardStep = ({ stepNumber, details, url, addUrl, submit, alert }) => {
+const DashboardStep = ({ stepNumber, details, url, addUrl, submit, alert, status }) => {
   let submitBlock;
   if (stepNumber !== 0) {
     submitBlock = (
