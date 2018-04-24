@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import DashboardStep from './DashboardStep';
+import axios from 'axios';
 import helpers from '../../helpers'
 
 import './ApplicantDashboard.css';
@@ -7,7 +8,6 @@ import './ApplicantDashboard.css';
 class ApplicantDashboard extends Component {
   state={
     steps: helpers.stepsArray,
-    disable: false,
   }
  
   addUrlHandler = (e, id) => {  
@@ -22,9 +22,10 @@ class ApplicantDashboard extends Component {
     steps[stepIndex].url = e.target.value;
     this.setState({ steps: steps });
     if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
-      step.alert = 'Valid';
+      step.alert = '';      
       const steps = [...this.state.steps];
       steps[stepIndex] = step;
+      step.status = 'submitted';      
       this.setState({ steps: steps });
     } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
         step.alert = 'Please make sure the link is valid and relevant to this step. ';
@@ -50,16 +51,33 @@ class ApplicantDashboard extends Component {
     };
     
     if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
-      step.alert = '';
+
       const steps = [...this.state.steps];
       steps[stepIndex] = step;
-      this.setState({ steps: steps });
+      step.status = true;
+      this.setState({ steps: steps,});
+      axios
+        .post('http://localhost:3001/api/applicants/steps-submitted/:id', {
+        applicant_id: 20,
+        step_number: this.state.steps[stepIndex].step,
+        status: this.state.steps[stepIndex].status,
+        url: this.state.steps[stepIndex].url,
+      })
+      .then(res => {
+        console.log(res);
+        this.setState({ steps: steps });
+        
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+
     } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
-      step.url = '';
       step.alert = 'Please make sure the link is valid and relevant to this step. ';
       const steps = [...this.state.steps];
       steps[stepIndex] = step; 
       this.setState({ steps: steps });
+
     } else { 
       const steps = [...this.state.steps]; 
       step.url = '';
@@ -83,6 +101,7 @@ class ApplicantDashboard extends Component {
           addUrl={(e) => this.addUrlHandler(e, step.step)}
           submit={(e) => this.submitUrlHandler(e, step.step)}
           alert={step.alert}
+          status={step.status}
           key={i} />
         ))}
       </section>
