@@ -44,7 +44,7 @@ router.get('/steps/all', (req,res) => {
 	let sql = 'select * from steps';
 	db.all(sql, [], (err, rows) => {
 		res.status(200).json({
-			applicants: rows
+			steps: rows
 		});
 	});
 });
