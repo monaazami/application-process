@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import DashboardStep from './DashboardStep';
 import helpers from '../../helpers'
 
+import './ApplicantDashboard.css';
+
 class ApplicantDashboard extends Component {
   state={
     steps: helpers.stepsArray,
     disable: false,
   }
  
-  submitUrlHandler = (e, id) => {
+  addUrlHandler = (e, id) => {  
     const stepIndex = this.state.steps.findIndex(myStep => {
       return myStep.step === id;
     })
@@ -16,14 +18,57 @@ class ApplicantDashboard extends Component {
       ...this.state.steps[stepIndex]
     };
     step.url= e.target.value;
-    console.log(step)
-    helpers.ValidURL(e.target.value, step.link)
     const steps = [...this.state.steps];
-    steps[stepIndex] = step;
-    this.setState({
-     steps: steps
-    });
+    steps[stepIndex].url = e.target.value;
+    this.setState({ steps: steps });
+    if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
+      step.alert = 'Valid';
+      const steps = [...this.state.steps];
+      steps[stepIndex] = step;
+      this.setState({ steps: steps });
+    } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
+        step.alert = 'Please make sure the link is valid and relevant to this step. ';
+        const steps = [...this.state.steps];
+        steps[stepIndex] = step; 
+        this.setState({ steps: steps });
+      } else { 
+        step.alert = 'Please make sure the link is valid and relevant to this step. ';
+        const steps = [...this.state.steps];         
+        steps[stepIndex] = step; 
+        this.setState({ steps: steps,});
+      }
+    
   };
+
+  submitUrlHandler = (e, id) => {
+    e.preventDefault();
+    const stepIndex = this.state.steps.findIndex(myStep => {
+      return myStep.step === id;
+    })
+    const step = {
+      ...this.state.steps[stepIndex]
+    };
+    
+    if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
+      step.alert = '';
+      const steps = [...this.state.steps];
+      steps[stepIndex] = step;
+      this.setState({ steps: steps });
+    } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
+      step.url = '';
+      step.alert = 'Please make sure the link is valid and relevant to this step. ';
+      const steps = [...this.state.steps];
+      steps[stepIndex] = step; 
+      this.setState({ steps: steps });
+    } else { 
+      const steps = [...this.state.steps]; 
+      step.url = '';
+      step.alert = 'Please make sure the link is valid and relevant to this step. ';
+      steps[stepIndex] = step; 
+      this.setState({ steps: steps,});
+    }
+  
+  }
 
   render(){
     return(
@@ -35,7 +80,9 @@ class ApplicantDashboard extends Component {
           details={step.details}
           link={step.link}                    
           url={step.url} 
-          addUrl={(e) => this.submitUrlHandler(e, step.step)}
+          addUrl={(e) => this.addUrlHandler(e, step.step)}
+          submit={(e) => this.submitUrlHandler(e, step.step)}
+          alert={step.alert}
           key={i} />
         ))}
       </section>
