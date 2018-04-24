@@ -19,6 +19,15 @@ router.get('/', (req,res) => {
 	});
 });
 
+router.get('/steps', (req,res) => {
+	let sql = 'select * from steps';
+	db.all(sql, [], (err, rows) => {
+		res.status(200).json({
+			applicants: rows
+		});
+	});
+});
+
 // get one applicant through his id
 router.get('/:id', function (req, res) {
 	let sql = 'select * from applicants where id = ?'; 
@@ -38,16 +47,32 @@ router.post('/', (req, res) => {
 	const { fullName, email, city, tel, status, country, experience, itAccess, hearAbout } = req.body;
 
 	db.run(`INSERT INTO applicants
-						(fullName, email, city, tel, status, country, experience, itAccess, hearAbout)
-					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-			[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], function(err) {
-		if (err) {
-			return res.send('400 - BAD REQUEST').status(400);
-		}
-		return res.json({
-			id: this.lastID
-		})
+			(fullName, email, city, tel, status, country, experience, itAccess, hearAbout)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+					[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], function(err) {
+						if (err) {
+							return res.send('400 - BAD REQUEST').status(400);
+						}
+						return res.json({
+							id: this.lastID
+					})
 	}); 
 });
+
+// insert link submitted by applicant 
+router.post('/steps-submitted/:id', (req, res) => {
+	db.run(`INSERT INTO steps (applicant_id, step_number, status, url) VALUES (?, ?, ?, ?)`,
+		[req.params.id, Number(req.body.step_number), req.body.status, req.body.url],
+			function(err) {
+				if (err) {
+					console.log(err.message)
+					return res.send('400 - BAD REQUEST').status(400);
+				}
+				return res.json({
+					id: this.lastID
+		}) 
+})
+})
+
 
 module.exports = router ;
