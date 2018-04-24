@@ -1,14 +1,15 @@
 import React from 'react';
 import StatusMessage from './StatusMessage';
 
-const DashboardStep = ({ stepNumber, details, url, addUrl}) => {
+
+const DashboardStep = ({ stepNumber, details, url, addUrl, submit, alert }) => {
   let submitBlock;
   if (stepNumber !== 0) {
     submitBlock = (
-      <form>
+      <form onSubmit={submit} >
         <div className="form-group">
           <input
-            required          
+            required
             type="text"
             placeholder="Add url here"
             name="url"
@@ -18,7 +19,9 @@ const DashboardStep = ({ stepNumber, details, url, addUrl}) => {
           <button className="btn btn-secondary" type="submit">
             Submit step
           </button>
-          <small id="emailHelp" class="form-text text-muted">Please make sure the link you have provided is revelant to this step and valid.</small>
+          <small id="emailHelp" className="form-text text-muted">
+            {alert}
+          </small>
         </div>
       </form>
     );
