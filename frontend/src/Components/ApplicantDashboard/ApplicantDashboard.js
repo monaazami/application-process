@@ -8,10 +8,27 @@ import './ApplicantDashboard.css';
 class ApplicantDashboard extends Component {
   state={
     steps: helpers.stepsArray,
+    data: [],
+    id: this.props.match.params.id,
   }
  
+  componentDidMount() {
+		this.getData(this.state.id);
+  }
+  
+	getData = (id) => {
+		fetch(`http://localhost:3001/api/dashboard/${id}`)
+		.then(results => results.json())
+		.then(data => {
+			this.setState({
+				data: data.data,
+			})
+		})
+		.catch(err => console.log(err));
+	}
+
   addUrlHandler = (e, id) => { 
-    // target and only change the input field we want to write in 
+    // TARGET AND ONLINE CHANGE THE VALUE OF THE INPUT APPLICANT WANT TO SUBMIT LINK
     const stepIndex = this.state.steps.findIndex(myStep => {
       return myStep.step === id;
     })
@@ -23,7 +40,7 @@ class ApplicantDashboard extends Component {
     steps[stepIndex].url = e.target.value;
     this.setState({ steps: steps });
 
-    //check url is valid and that link is a substract of that url display a message when none of these condition are meeted
+    // CHECK IF URL SUBMITTED IS VALID && IF LINK (KEY IN STEPSARRAY) IS A SUBSTRACT OF THAT URL AND DISPLAY MESSAGE WHEN NONE ONE THOSE CONDITIONS ARE MEETED 
     if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
       step.alert = '';      
       const steps = [...this.state.steps];
@@ -53,29 +70,27 @@ class ApplicantDashboard extends Component {
       ...this.state.steps[stepIndex]
     };
     
-    // send data backend only if url submitted meet the requirement
+    // SEND DATA TO BACKEND ONLY IF URL SUBMITTED BY APPLICANT MEET THE REQUIREMENT BELOW 
     if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
       const steps = [...this.state.steps];
       steps[stepIndex] = step;
-      step.status = true;
+      step.alert = 'sumitted';
       this.setState({ steps: steps,});
       axios
-        .post('http://localhost:3001/api/applicants/steps-submitted/:id', {
-        applicant_id: 20,
+        .post(`http://localhost:3001/api/dashboard/${this.props.match.params.id}`, {
+        applicant_id: this.props.match.params.id,
         step_number: this.state.steps[stepIndex].step,
         status: this.state.steps[stepIndex].status,
         url: this.state.steps[stepIndex].url,
       })
       .then(res => {
-        console.log(res);
         this.setState({ steps: steps });
-        
       })
       .catch(error => {
         console.log(error.message);
       });
       
-      // for all these cases don't post submit the url
+      // FOR ALL THE CONDITIONS BELOW DON'T SEND DATA TO BACKEND
     } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
       step.alert = 'Please make sure the link is valid and relevant to this step. ';
       const steps = [...this.state.steps];
@@ -95,7 +110,9 @@ class ApplicantDashboard extends Component {
   render(){
     return(
       <section className='applicant-dashboard'>
-        <h2>Your Progress</h2>
+			<p> Welcome to your Page, <b>Applicant Name </b> </p>
+			<p> There will be more information about steps and what applicant should do with them </p>
+	    <h2>Your Progress</h2>
         {this.state.steps.map((step, i) => (
           <DashboardStep
           stepNumber={step.step} 
@@ -106,7 +123,9 @@ class ApplicantDashboard extends Component {
           submit={(e) => this.submitUrlHandler(e, step.step)}
           alert={step.alert}
           status={step.status}
-          key={i} />
+          key={i} 
+          data={this.state.data}
+          />
         ))}
       </section>
     );

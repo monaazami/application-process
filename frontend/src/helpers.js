@@ -22,3 +22,4 @@ exports.ValidURL = (str) => {
 }
 
 exports.containPartOf = (str, link) => str.indexOf(link)      
+ 

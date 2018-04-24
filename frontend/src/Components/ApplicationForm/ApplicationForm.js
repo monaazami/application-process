@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FormSubmittedMessage from './FormSubmittedMessage';
+import classnames from 'classnames';
+import './ApplicationForm.css';
 
 class ApplicationForm extends Component {
   constructor() {
@@ -16,6 +18,7 @@ class ApplicationForm extends Component {
       itAccess: 'Yes',
       hearAbout: '',
       submitted: false,
+      id: ''
     };
   }
 
@@ -55,6 +58,7 @@ class ApplicationForm extends Component {
         
         this.setState({
           submitted: true,
+          id: res.data.id
         });
       })
       .catch(error => {
@@ -77,9 +81,12 @@ class ApplicationForm extends Component {
 	})
 	}
   render() {
-    if (!this.state.submitted) {
       return (
-        <div className="application-form container">
+        <div>
+        <div className={classnames('application-form container', {
+          'hidden': (this.state.submitted === true),
+          'block': (this.state.submitted === false)
+          })}>
           <h1 className="text-center mt-5 pt-4 pb-3 display-5">
             Student Application Form
           </h1>
@@ -262,11 +269,10 @@ class ApplicationForm extends Component {
               Submit Application
             </button>
           </form>
+          </div>
+          <FormSubmittedMessage hideThankyouMessage={this.hideThankyouMessage} fullName={this.state.fullName} email={this.state.email} id={this.state.id} submitted={this.state.submitted}/>
         </div>
-      );
-    } else {
-      return <FormSubmittedMessage hideThankyouMessage={this.hideThankyouMessage} fullName={this.state.fullName} email={this.state.email}/>;
+      )
     }
   }
-}
 export default ApplicationForm;
