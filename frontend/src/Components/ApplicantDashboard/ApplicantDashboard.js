@@ -30,6 +30,8 @@ class ApplicantDashboard extends React.Component {
 	render() {
 		return(
 			<section className='applicant-dashboard'>
+			<p> Welcome to your Page, <b>Applicant Name </b> </p>
+			<p> There will be more information about steps and what applicant should do with them </p>
 	    <h2>Your Progress</h2>
 	    {stepsArray.map((step, i) => (
 	      <DashboardStep stepNumber={step.step} details={step.details} key={i} data={this.state.data}/>
