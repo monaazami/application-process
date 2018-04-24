@@ -14,8 +14,8 @@ const Routes = () => (
 			<Route exact path="/" component={ApplicationForm} />
 			<Route exact path="/applicant-dashboard" component={ApplicantDashboard} />
 			<Route exact path="/applicants" component={AdminGeneral} />
-      <Route exact path="/form-submitted-message" component={FormSubmittedMessage} />
-      <Route path='/applicants/:id' component={ApplicantProgress} />
+			<Route exact path="/form-submitted-message" component={FormSubmittedMessage} />
+			<Route path='/applicants/:id' component={ApplicantProgress} />
 		</div>
 	</Router>
 );
