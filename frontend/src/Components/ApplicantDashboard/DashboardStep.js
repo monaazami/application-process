@@ -7,19 +7,19 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
   if (stepNumber !== 0) {
     submitBlock = (
       <form onSubmit={submit} >
-        <div className="form-group">
+        <div className='form-group'>
           <input
             required
-            type="text"
-            placeholder="Add url here"
-            name="url"
+            type='text'
+            placeholder='Add url here'
+            name='url'
             value={url}
             onChange={addUrl}
           />
-          <button className="btn btn-secondary" type="submit">
+          <button className='btn btn-secondary' type='submit'>
             Submit step
           </button>
-          <small id="emailHelp" className="form-text text-muted">
+          <small id='emailHelp' className='form-text text-muted'>
             {alert}
           </small>
         </div>
@@ -27,7 +27,7 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
     );
   }
   return (
-    <section className="dashboard-step">
+    <section className='dashboard-step'>
       <h3>Step {stepNumber}</h3>
       <p>
         <b>{details}</b>
