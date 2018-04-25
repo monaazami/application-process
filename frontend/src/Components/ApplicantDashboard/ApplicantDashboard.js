@@ -44,18 +44,12 @@ class ApplicantDashboard extends Component {
       steps[stepIndex] = step;
       step.status = 'submitted';      
       this.setState({ steps: steps });
-    } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
-        step.alert = 'Please make sure the link is valid and relevant to this step. ';
-        const steps = [...this.state.steps];
-        steps[stepIndex] = step; 
-        this.setState({ steps: steps });
-      } else { 
+    } else { 
         step.alert = 'Please make sure the link is valid and relevant to this step. ';
         const steps = [...this.state.steps];         
         steps[stepIndex] = step; 
         this.setState({ steps: steps,});
       }
-    
   };
 
   submitUrlHandler = (e, id) => {
@@ -74,8 +68,8 @@ class ApplicantDashboard extends Component {
       step.alert = 'sumitted';
       this.setState({ steps: steps,});
       axios
-        .post(`http://localhost:3001/api/dashboard/${this.props.match.params.id}`, {
-        applicant_id: this.props.match.params.id,
+        .post(`http://localhost:3001/api/dashboard/${this.state.id}`, {
+        applicant_id: this.state.id,
         step_number: this.state.steps[stepIndex].step,
         status: this.state.steps[stepIndex].status,
         url: this.state.steps[stepIndex].url,
@@ -86,14 +80,6 @@ class ApplicantDashboard extends Component {
       .catch(error => {
         console.log(error.message);
       });
-      
-      // FOR ALL THE CONDITIONS BELOW DON'T SEND DATA TO BACKEND
-    } else if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) === -1)){
-      step.alert = 'Please make sure the link is valid and relevant to this step. ';
-      const steps = [...this.state.steps];
-      steps[stepIndex] = step; 
-      this.setState({ steps: steps });
-
     } else { 
       const steps = [...this.state.steps]; 
       step.url = '';
@@ -101,7 +87,6 @@ class ApplicantDashboard extends Component {
       steps[stepIndex] = step; 
       this.setState({ steps: steps,});
     }
-  
   }
 
   render(){
