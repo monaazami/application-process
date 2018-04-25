@@ -36,9 +36,6 @@ class ApplicantDashboard extends Component {
       ...this.state.steps[stepIndex]
     };
     step.url= e.target.value;
-    const steps = [...this.state.steps];
-    steps[stepIndex].url = e.target.value;
-    this.setState({ steps: steps });
 
     // CHECK IF URL SUBMITTED IS VALID && IF LINK (KEY IN STEPSARRAY) IS A SUBSTRACT OF THAT URL AND DISPLAY MESSAGE WHEN NONE ONE THOSE CONDITIONS ARE MEETED 
     if (helpers.ValidURL(step.url) && (helpers.containPartOf(step.url, step.link) !== -1)) {
