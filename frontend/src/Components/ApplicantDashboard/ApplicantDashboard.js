@@ -28,7 +28,7 @@ class ApplicantDashboard extends Component {
 	}
 
   addUrlHandler = (e, id) => { 
-    // TARGET AND ONLINE CHANGE THE VALUE OF THE INPUT APPLICANT WANT TO SUBMIT LINK
+    // TARGET AND ONLY CHANGE THE VALUE OF THE INPUT APPLICANT WANT TO SUBMIT LINK
     const stepIndex = this.state.steps.findIndex(myStep => {
       return myStep.step === id;
     })
