@@ -10,6 +10,7 @@ class ApplicantDashboard extends Component {
     steps: helpers.stepsArray,
     data: [],
     id: this.props.match.params.id,
+    name: ''
   }
  
   componentDidMount() {
@@ -22,6 +23,7 @@ class ApplicantDashboard extends Component {
 		.then(data => {
 			this.setState({
 				data: data.data,
+				name: data.data[0].fullName
 			})
 		})
 		.catch(err => console.log(err));
@@ -92,7 +94,7 @@ class ApplicantDashboard extends Component {
   render(){
     return(
       <section className='applicant-dashboard'>
-			<p> Welcome to your Page, <b>Applicant Name </b> </p>
+			<p> Welcome to your Page, <b> {this.state.name}</b> </p>
 			<p> There will be more information about steps and what applicant should do with them </p>
 	    <h2>Your Progress</h2>
         {this.state.steps.map((step, i) => (
