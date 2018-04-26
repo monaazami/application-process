@@ -54,6 +54,8 @@ class ApplicationForm extends Component {
         hearAbout,
       })
       .then(res => {
+        console.log(res);
+        
         this.setState({
           submitted: true,
           id: res.data.id

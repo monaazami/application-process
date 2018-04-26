@@ -19,6 +19,7 @@ router.get('/', (req,res) => {
 	});
 });
 
+
 // get one applicant through his id
 router.get('/:id', function (req, res) {
 	let sql = 'select * from applicants where id = ?'; 
@@ -38,17 +39,19 @@ router.post('/', (req, res) => {
 	const { fullName, email, city, tel, status, country, experience, itAccess, hearAbout } = req.body;
 
 	db.run(`INSERT INTO applicants
-						(fullName, email, city, tel, status, country, experience, itAccess, hearAbout)
-					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-			[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], function(err) {
-		if (err) {
-			return res.send('400 - BAD REQUEST').status(400);
-		}
-		return res.json({
-			id: this.lastID
-		})
+			(fullName, email, city, tel, status, country, experience, itAccess, hearAbout)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+					[fullName, email, city, tel, status, country, experience, itAccess, hearAbout], function(err) {
+						if (err) {
+							return res.send('400 - BAD REQUEST').status(400);
+						}
+						return res.json({
+							id: this.lastID
+					})
 	}); 
 });
 
 
-module.exports = router;
+
+
+module.exports = router ;

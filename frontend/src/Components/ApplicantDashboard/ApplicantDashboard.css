@@ -10,3 +10,9 @@
 	border-top: 1px solid grey;
 	margin-bottom: 1rem;
 }
+
+.dashboard-step small {
+	color:#ee0402!important;
+	font-size: 85%;
+    font-weight: 600;
+}
