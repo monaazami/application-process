@@ -71,7 +71,7 @@ class ApplicantDashboard extends Component {
         .post(`http://localhost:3001/api/dashboard/${this.state.id}`, {
         applicant_id: this.state.id,
         step_number: this.state.steps[stepIndex].step,
-        step_status: this.state.steps[stepIndex].status,
+        step_status: this.state.steps[stepIndex].step_status,
         url: this.state.steps[stepIndex].url,
       })
       .then(res => {
