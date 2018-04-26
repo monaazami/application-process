@@ -42,7 +42,7 @@ class ApplicantDashboard extends Component {
       step.alert = '';      
       const steps = [...this.state.steps];
       steps[stepIndex] = step;
-      step.status = 'submitted';      
+      step.step_status = 'Submitted';      
       this.setState({ steps: steps });
     } else { 
         step.alert = 'Please make sure the link is valid and relevant to this step. ';
@@ -71,7 +71,7 @@ class ApplicantDashboard extends Component {
         .post(`http://localhost:3001/api/dashboard/${this.state.id}`, {
         applicant_id: this.state.id,
         step_number: this.state.steps[stepIndex].step,
-        status: this.state.steps[stepIndex].status,
+        step_status: this.state.steps[stepIndex].status,
         url: this.state.steps[stepIndex].url,
       })
       .then(res => {
@@ -104,7 +104,7 @@ class ApplicantDashboard extends Component {
           addUrl={(e) => this.addUrlHandler(e, step.step)}
           submit={(e) => this.submitUrlHandler(e, step.step)}
           alert={step.alert}
-          status={step.status}
+          step_status={step.step_status}
           key={i} 
           index={i}
           data={this.state.data}

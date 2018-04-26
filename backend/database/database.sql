@@ -17,7 +17,7 @@ create table steps (
     id                integer primary key,
     applicant_id      integer,
     step_number       integer not null,
-    status            string not null,
+    step_status            string not null,
     url               string default null,
     foreign key (applicant_id) references applicants(id)
 );

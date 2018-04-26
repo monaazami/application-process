@@ -2,12 +2,14 @@ import React from 'react';
 import StatusMessage from './StatusMessage';
 
 
-const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, status, index }) => {
+const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, step_status, index }) => {
   let submitBlock;
   let stat;
   data.map(step => {
     if (step.step_number === index) {
-      stat = true;
+      stat = step.step_status;
+    } else {
+      stat = false;
     }
   })
 
@@ -42,7 +44,7 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
         <b>{details}</b>
       </p>
       {submitBlock}
-      <StatusMessage status={stat ? 'Submitted' : 'Not submitted'}/>
+      <StatusMessage stat={stat}/>
     </section>
   );
 };

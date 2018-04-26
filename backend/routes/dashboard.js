@@ -11,7 +11,7 @@ let db = new sqlite.Database(filename, (err) => {
 
 // GET APPLICANT PROGRESS DATA (TABLE STEPS) 
 router.get('/:id', function (req, res) {
-	let sql = 'select * from steps where applicant_id = ?'; 
+	let sql = 'select * from applicants left join steps on applicants.id = steps.applicant_id where applicant_id = ?'; 
  	db.all(sql, [Number(req.params.id)], (err, rows) => {
     if (typeof (Number(req.params.id)) !== 'number') {
       res.status(400).send('Bad request');
@@ -25,8 +25,8 @@ router.get('/:id', function (req, res) {
 
 // insert link submitted by applicant to step table
 router.post('/:id', (req, res) => {
-	db.run(`INSERT INTO steps (applicant_id, step_number, status, url) VALUES (?, ?, ?, ?)`,
-		[Number(req.params.id), Number(req.body.step_number), req.body.status, req.body.url],
+	db.run(`INSERT INTO steps (applicant_id, step_number, step_status, url) VALUES (?, ?, ?, ?)`,
+		[Number(req.params.id), Number(req.body.step_number), req.body.step_status, req.body.url],
 			function(err) {
 				if (err) {
 					console.log(err.message)
