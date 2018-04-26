@@ -2,12 +2,19 @@ import React from 'react';
 import StatusMessage from './StatusMessage';
 
 
-const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, status }) => {
+const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, status, index }) => {
   let submitBlock;
+  let stat;
+  data.map(step => {
+    if (step.step_number === index) {
+      stat = true;
+    }
+  })
+
   if (stepNumber !== 0) {
     submitBlock = (
       <form onSubmit={submit} >
-        <div className='form-group'>
+        <div className={stat ? 'hidden' : 'block'}>
           <input
             required
             type='text'
@@ -26,6 +33,8 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
       </form>
     );
   }
+
+
   return (
     <section className='dashboard-step'>
       <h3>Step {stepNumber}</h3>
@@ -33,7 +42,7 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
         <b>{details}</b>
       </p>
       {submitBlock}
-      <StatusMessage status={stepNumber !== 0 ? '' : 'Approved'} />
+      <StatusMessage status={stat ? 'Submitted' : 'Not submitted'}/>
     </section>
   );
 };

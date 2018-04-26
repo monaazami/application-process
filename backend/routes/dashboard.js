@@ -23,7 +23,6 @@ router.get('/:id', function (req, res) {
   })
 });
 
-
 // insert link submitted by applicant to step table
 router.post('/:id', (req, res) => {
 	db.run(`INSERT INTO steps (applicant_id, step_number, status, url) VALUES (?, ?, ?, ?)`,

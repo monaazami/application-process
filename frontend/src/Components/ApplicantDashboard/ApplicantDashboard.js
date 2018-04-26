@@ -106,6 +106,7 @@ class ApplicantDashboard extends Component {
           alert={step.alert}
           status={step.status}
           key={i} 
+          index={i}
           data={this.state.data}
           />
         ))}

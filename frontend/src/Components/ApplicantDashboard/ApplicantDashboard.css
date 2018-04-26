@@ -16,3 +16,11 @@
 	font-size: 85%;
     font-weight: 600;
 }
+
+.hidden {
+	display: none;
+}
+
+.block {
+	display: block;
+}
