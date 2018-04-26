@@ -5,3 +5,11 @@
 .btn-success {
 	margin-right: 1rem;
 }
+
+.block {
+	display: block;
+}
+
+.hidden {
+	display: hidden;
+}

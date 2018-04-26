@@ -8,6 +8,7 @@ class ApplicantProgress extends React.Component {
 		super(props);
 
 		this.state = {
+			allData: [],
 			applicantData: [],
 			id: props.match.params.id
 		}
@@ -17,11 +18,12 @@ class ApplicantProgress extends React.Component {
 	}
 
 	getApplicantData = (id) => {
-		fetch(`http://localhost:3001/api/applicants/${id}`)
+		fetch(`http://localhost:3001/api/dashboard/${id}`)
 		.then(results => results.json())
 		.then(data => {
 			this.setState({
-				applicantData: data.applicants[0]
+				allData: data.data,
+				applicantData: data.data[0]
 			})
 		})
 		.catch(err => console.log(err))
@@ -29,6 +31,7 @@ class ApplicantProgress extends React.Component {
 
 	render() {
 		const data = this.state.applicantData;
+		console.log(this.state.allData);
 		return (
 			<div>
 				<section className='applicant-detailed'>
@@ -46,7 +49,7 @@ class ApplicantProgress extends React.Component {
 				<section className='applicant-progress'>
 					<h3> Progress </h3>
 					{helpers.stepsArray.map((step, i) => (
-						<ApplicantStep stepNumber={step.step} details={step.details} key={i} />
+						<ApplicantStep stepNumber={step.step} details={step.details} key={i} data={this.state.allData} index={i}/>
 					))}
 				</section>
 			</div>
