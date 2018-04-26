@@ -11,7 +11,7 @@ let db = new sqlite.Database(filename, (err) => {
 
 // GET APPLICANT PROGRESS DATA (TABLE STEPS) 
 router.get('/:id', function (req, res) {
-	let sql = 'select s.applicant_id, a.fullName, s.id, s.step_number, s.step_status, s.url from applicants as a left join steps as s on a.id = s.applicant_id where s.applicant_id = ?'; 
+	let sql = 'select a.fullName, s.applicant_id, s.id, s.step_number, s.step_status, s.url from applicants as a left join steps as s on a.id = s.applicant_id where s.applicant_id = ?'; 
  	db.all(sql, [Number(req.params.id)], (err, rows) => {
     if (typeof (Number(req.params.id)) !== 'number') {
       res.status(400).send('Bad request');

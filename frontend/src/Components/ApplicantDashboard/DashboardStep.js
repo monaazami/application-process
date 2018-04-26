@@ -8,9 +8,7 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
   data.map(step => {
     if (step.step_number === index) {
       stat = step.step_status;
-    } else {
-      stat = false;
-    }
+    } 
   })
 
   if (stepNumber !== 0) {
@@ -36,7 +34,6 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
     );
   }
 
-
   return (
     <section className='dashboard-step'>
       <h3>Step {stepNumber}</h3>
@@ -44,7 +41,7 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
         <b>{details}</b>
       </p>
       {submitBlock}
-      <StatusMessage stat={stat}/>
+      <StatusMessage stat={stat} stepNumber={stepNumber}/>
     </section>
   );
 };
