@@ -16,7 +16,6 @@ const ApplicantStep = ({ details, stepNumber, progress, index }) => {
 	    };
   	});
   };
-  console.log(status);
 
 	if (link) {
 		linkBlock = <a href={link}> {link} </a>
