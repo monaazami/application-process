@@ -1,5 +1,6 @@
 import React from 'react';
 import './ApplicantProgress.css';
+import classnames from 'classnames';
 
 const ApplicantStep = ({ details, stepNumber, progress, index }) => {
 	let link;
@@ -15,6 +16,7 @@ const ApplicantStep = ({ details, stepNumber, progress, index }) => {
 	    };
   	});
   };
+  console.log(status);
 
 	if (link) {
 		linkBlock = <a href={link}> {link} </a>
@@ -30,9 +32,12 @@ const ApplicantStep = ({ details, stepNumber, progress, index }) => {
 			      {linkBlock}
 			      <p className={link ? 'block' : 'hidden'}> Status: {status} </p>
 		      </div>
-		      <div>
-			      <button className='btn-success' disabled> Approve </button>
-			      <button className='btn-danger'disabled> Reject </button>
+		      <div className={classnames({
+		      	'block': (status === 'Submitted'),
+		      	'hidden': (status === 'Approved' || status === 'Rejected' || status === undefined)
+		      })}>
+			      <button className='btn-success'> Approve </button>
+			      <button className='btn-danger'> Reject </button>
 		      </div>
 	      </div>   
     );
