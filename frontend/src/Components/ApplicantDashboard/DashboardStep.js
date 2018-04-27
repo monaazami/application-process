@@ -14,7 +14,7 @@ const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
     });
   };
 
-  if (step.stepNumber !== 0) {
+  if (step.step !== 0) {
     submitBlock = (
       <form onSubmit={submit} >
         <div className={stat ? 'hidden' : 'block'}>
@@ -39,12 +39,12 @@ const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
 
   return (
     <section className='dashboard-step'>
-      <h3>Step {step.stepNumber}</h3>
+      <h3>Step {step.step}</h3>
       <p>
         <b>{step.details}</b>
       </p>
       {submitBlock}
-      <StatusMessage stat={stat} stepNumber={step.stepNumber}/>
+      <StatusMessage stat={stat} stepNumber={step.step}/>
     </section>
   );
 };
