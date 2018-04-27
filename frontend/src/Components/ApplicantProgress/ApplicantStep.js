@@ -1,18 +1,20 @@
 import React from 'react';
 import './ApplicantProgress.css';
 
-const ApplicantStep = ({ details, stepNumber, data, index }) => {
+const ApplicantStep = ({ details, stepNumber, progress, index }) => {
 	let link;
 	let status;
 	let reviewBlock;
 	let linkBlock;
 
-	data.map(step => {
-    if (step.step_number === index) {
-      link = step.url;
-      status = step.step_status;
-    } 
-  });
+	if (progress.length > 0) {
+		progress.map(step => {
+	    if (step.step_number === index) {
+	      link = step.url;
+	      status = step.step_status;
+	    };
+  	});
+  };
 
 	if (link) {
 		linkBlock = <a href={link}> {link} </a>
