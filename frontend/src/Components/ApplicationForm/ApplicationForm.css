@@ -5,3 +5,12 @@
 .hidden {
 	display: none;
 }
+
+.thanks-message,
+.important-message {
+	font-size: 1.5rem;
+}
+
+.link-message {
+	font-size: 1.8rem;
+}
