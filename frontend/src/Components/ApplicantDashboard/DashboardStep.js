@@ -3,7 +3,6 @@ import StatusMessage from './StatusMessage';
 
 
 const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
-  console.log(step);
   let submitBlock;
   let stat;
   if (progress.length > 0) {

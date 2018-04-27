@@ -42,7 +42,6 @@ class ApplicantProgress extends React.Component {
 
 	render() {
 		const data = this.state.applicantData;
-		console.log(this.state.progress);
 		return (
 			<div>
 				<section className='applicant-detailed'>

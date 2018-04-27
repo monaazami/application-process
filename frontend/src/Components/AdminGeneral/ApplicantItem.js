@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ApplicantItem = ({id, fullName, email, city, status, experience, itAccess}) => {
+const ApplicantItem = ({data}) => {
 	return(
 		<tr>
-			<td><Link to={`/applicants/${id}`}>{fullName}</Link></td>
-			<td>{city}</td>
-			<td className={status ? 'sucess' : 'danger'}>{status ? 'yes' : 'no'}</td>
-			<td>{experience}</td>
-			<td>{itAccess ? 'yes' : 'no'}</td>
+			<td><Link to={`/applicants/${data.id}`}>{data.fullName}</Link></td>
+			<td>{data.city}</td>
+			<td className={data.status ? 'sucess' : 'danger'}>{data.status ? 'yes' : 'no'}</td>
+			<td>{data.experience}</td>
+			<td>{data.itAccess ? 'yes' : 'no'}</td>
 			<td> Step 0 </td>
 		</tr>
 	)
