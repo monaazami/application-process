@@ -9,11 +9,13 @@ class ApplicantProgress extends React.Component {
 
 		this.state = {
 			applicantData: [],
-			id: props.match.params.id
+			id: props.match.params.id,
+			progress: []
 		}
 	}
 	componentDidMount() {
 		this.getApplicantData(this.state.id)
+		this.getProgressData(this.state.id)
 	}
 
 	getApplicantData = (id) => {
@@ -22,6 +24,17 @@ class ApplicantProgress extends React.Component {
 		.then(data => {
 			this.setState({
 				applicantData: data.applicants[0]
+			})
+		})
+		.catch(err => console.log(err))
+	}
+
+	getProgressData = (id) => {
+		fetch(`http://localhost:3001/api/dashboard/${id}`)
+		.then(results => results.json())
+		.then(data => {
+			this.setState({
+				progress: data.data
 			})
 		})
 		.catch(err => console.log(err))
@@ -46,7 +59,7 @@ class ApplicantProgress extends React.Component {
 				<section className='applicant-progress'>
 					<h3> Progress </h3>
 					{helpers.stepsArray.map((step, i) => (
-						<ApplicantStep stepNumber={step.step} details={step.details} key={i} />
+						<ApplicantStep stepNumber={step.step} details={step.details} key={i} progress={this.state.progress} index={i}/>
 					))}
 				</section>
 			</div>

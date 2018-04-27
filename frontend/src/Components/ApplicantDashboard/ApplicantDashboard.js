@@ -8,20 +8,33 @@ import './ApplicantDashboard.css';
 class ApplicantDashboard extends Component {
   state={
     steps: helpers.stepsArray,
-    data: [],
+    applicantData: [],
     id: this.props.match.params.id,
+    progress: []
   }
  
   componentDidMount() {
 		this.getData(this.state.id);
+		this.getProgress(this.state.id);
   }
   
 	getData = (id) => {
+		fetch(`http://localhost:3001/api/applicants/${id}`)
+		.then(results => results.json())
+		.then(data => {
+			this.setState({
+				applicantData: data.applicants[0]
+			})
+		})
+		.catch(err => console.log(err));
+	}
+
+	getProgress = (id) => {
 		fetch(`http://localhost:3001/api/dashboard/${id}`)
 		.then(results => results.json())
 		.then(data => {
 			this.setState({
-				data: data.data,
+				progress: data.data
 			})
 		})
 		.catch(err => console.log(err));
@@ -42,7 +55,7 @@ class ApplicantDashboard extends Component {
       step.alert = '';      
       const steps = [...this.state.steps];
       steps[stepIndex] = step;
-      step.status = 'submitted';      
+      step.step_status = 'Submitted';      
       this.setState({ steps: steps });
     } else { 
         step.alert = 'Please make sure the link is valid and relevant to this step. ';
@@ -71,7 +84,7 @@ class ApplicantDashboard extends Component {
         .post(`http://localhost:3001/api/dashboard/${this.state.id}`, {
         applicant_id: this.state.id,
         step_number: this.state.steps[stepIndex].step,
-        status: this.state.steps[stepIndex].status,
+        step_status: this.state.steps[stepIndex].step_status,
         url: this.state.steps[stepIndex].url,
       })
       .then(res => {
@@ -92,21 +105,18 @@ class ApplicantDashboard extends Component {
   render(){
     return(
       <section className='applicant-dashboard'>
-			<p> Welcome to your Page, <b>Applicant Name </b> </p>
+			<p> Welcome to your Page, <b> {this.state.applicantData.fullName}</b> </p>
 			<p> There will be more information about steps and what applicant should do with them </p>
 	    <h2>Your Progress</h2>
         {this.state.steps.map((step, i) => (
-          <DashboardStep
-          stepNumber={step.step} 
-          details={step.details}
-          link={step.link}                    
-          url={step.url} 
+          <DashboardStep     
+          step={step}         
           addUrl={(e) => this.addUrlHandler(e, step.step)}
           submit={(e) => this.submitUrlHandler(e, step.step)}
           alert={step.alert}
-          status={step.status}
           key={i} 
-          data={this.state.data}
+          index={i}
+          progress={this.state.progress}
           />
         ))}
       </section>

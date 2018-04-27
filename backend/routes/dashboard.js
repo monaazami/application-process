@@ -23,11 +23,10 @@ router.get('/:id', function (req, res) {
   })
 });
 
-
 // insert link submitted by applicant to step table
 router.post('/:id', (req, res) => {
-	db.run(`INSERT INTO steps (applicant_id, step_number, status, url) VALUES (?, ?, ?, ?)`,
-		[Number(req.params.id), Number(req.body.step_number), req.body.status, req.body.url],
+	db.run(`INSERT INTO steps (applicant_id, step_number, step_status, url) VALUES (?, ?, ?, ?)`,
+		[Number(req.params.id), Number(req.body.step_number), req.body.step_status, req.body.url],
 			function(err) {
 				if (err) {
 					console.log(err.message)

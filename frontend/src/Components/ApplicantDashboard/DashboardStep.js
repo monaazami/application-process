@@ -2,18 +2,27 @@ import React from 'react';
 import StatusMessage from './StatusMessage';
 
 
-const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, status }) => {
+const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
   let submitBlock;
-  if (stepNumber !== 0) {
+  let status;
+  if (progress.length > 0) {
+    progress.map(step => {
+      if (step.step_number === index) {
+        status = step.step_status;
+      };
+    });
+  };
+
+  if (step.step !== 0) {
     submitBlock = (
       <form onSubmit={submit} >
-        <div className='form-group'>
+        <div className={status ? 'hidden' : 'block'}>
           <input
             required
             type='text'
             placeholder='Add url here'
             name='url'
-            value={url}
+            value={step.url}
             onChange={addUrl}
           />
           <button className='btn btn-secondary' type='submit'>
@@ -26,14 +35,15 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
       </form>
     );
   }
+
   return (
     <section className='dashboard-step'>
-      <h3>Step {stepNumber}</h3>
+      <h3>Step {step.step}</h3>
       <p>
-        <b>{details}</b>
+        <b>{step.details}</b>
       </p>
       {submitBlock}
-      <StatusMessage status={stepNumber !== 0 ? '' : 'Approved'} />
+      <StatusMessage status={status} stepNumber={step.step}/>
     </section>
   );
 };
