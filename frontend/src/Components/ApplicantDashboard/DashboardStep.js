@@ -4,11 +4,11 @@ import StatusMessage from './StatusMessage';
 
 const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
   let submitBlock;
-  let stat;
+  let status;
   if (progress.length > 0) {
     progress.map(step => {
       if (step.step_number === index) {
-        stat = step.step_status;
+        status = step.step_status;
       };
     });
   };
@@ -16,7 +16,7 @@ const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
   if (step.step !== 0) {
     submitBlock = (
       <form onSubmit={submit} >
-        <div className={stat ? 'hidden' : 'block'}>
+        <div className={status ? 'hidden' : 'block'}>
           <input
             required
             type='text'
@@ -43,7 +43,7 @@ const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
         <b>{step.details}</b>
       </p>
       {submitBlock}
-      <StatusMessage stat={stat} stepNumber={step.step}/>
+      <StatusMessage status={status} stepNumber={step.step}/>
     </section>
   );
 };

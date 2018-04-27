@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const StatusMessage = ({ stat, stepNumber }) => {
+const StatusMessage = ({ status, stepNumber }) => {
 	if (stepNumber === 0) {
 		return (
 			<span>Status: 
@@ -12,12 +12,12 @@ const StatusMessage = ({ stat, stepNumber }) => {
 			return (
 				<span>Status: 
 					<b className={classnames({
-					'msg-approved': (stat === 'Approved'),
-					'msg-reject': (stat === 'Reject'),
-					'msg-submitted': (stat === 'Submitted'),
-					'msg-unsubmitted': (stat === false)
+					'msg-approved': (status === 'Approved'),
+					'msg-reject': (status === 'Reject'),
+					'msg-submitted': (status === 'Submitted'),
+					'msg-unsubmitted': (status === false)
 						})}
-					> {stat ? stat : 'Not submitted'}
+					> {status ? status : 'Not submitted'}
 					</b>
 				</span>
 				);
