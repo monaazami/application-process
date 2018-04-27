@@ -8,22 +8,33 @@ import './ApplicantDashboard.css';
 class ApplicantDashboard extends Component {
   state={
     steps: helpers.stepsArray,
-    data: [],
+    applicantData: [],
     id: this.props.match.params.id,
-    name: ''
+    progress: []
   }
  
   componentDidMount() {
 		this.getData(this.state.id);
+		this.getProgress(this.state.id);
   }
   
 	getData = (id) => {
+		fetch(`http://localhost:3001/api/applicants/${id}`)
+		.then(results => results.json())
+		.then(data => {
+			this.setState({
+				applicantData: data.applicants[0]
+			})
+		})
+		.catch(err => console.log(err));
+	}
+
+	getProgress = (id) => {
 		fetch(`http://localhost:3001/api/dashboard/${id}`)
 		.then(results => results.json())
 		.then(data => {
 			this.setState({
-				data: data.data,
-				name: data.data[0].fullName
+				progress: data.data
 			})
 		})
 		.catch(err => console.log(err));
@@ -94,22 +105,18 @@ class ApplicantDashboard extends Component {
   render(){
     return(
       <section className='applicant-dashboard'>
-			<p> Welcome to your Page, <b> {this.state.name}</b> </p>
+			<p> Welcome to your Page, <b> {this.state.applicantData.fullName}</b> </p>
 			<p> There will be more information about steps and what applicant should do with them </p>
 	    <h2>Your Progress</h2>
         {this.state.steps.map((step, i) => (
-          <DashboardStep
-          stepNumber={step.step} 
-          details={step.details}
-          link={step.link}                    
-          url={step.url} 
+          <DashboardStep     
+          step={step}         
           addUrl={(e) => this.addUrlHandler(e, step.step)}
           submit={(e) => this.submitUrlHandler(e, step.step)}
           alert={step.alert}
-          step_status={step.step_status}
           key={i} 
           index={i}
-          data={this.state.data}
+          progress={this.state.progress}
           />
         ))}
       </section>

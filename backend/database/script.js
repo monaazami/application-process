@@ -39,11 +39,3 @@ fakeApplicants.map(fake => {
 	 		return console.error(err.message)
 	 	}});
 });
-
-for (let i=1; i < 21; i++) {
-	let sql = `INSERT INTO steps (applicant_id, step_number, step_status, url) VALUES (${i}, 0, 'Approved', 'No url required')`;
-	db.run(sql, [], function(err) {
-		if (err) {
-			return console.log.error(err.message)
-		}})
-};

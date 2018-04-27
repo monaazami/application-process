@@ -2,16 +2,19 @@ import React from 'react';
 import StatusMessage from './StatusMessage';
 
 
-const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, step_status, index }) => {
+const DashboardStep = ({ step, addUrl, submit, alert, index, progress }) => {
+  console.log(step);
   let submitBlock;
   let stat;
-  data.map(step => {
-    if (step.step_number === index) {
-      stat = step.step_status;
-    } 
-  })
+  if (progress.length > 0) {
+    progress.map(step => {
+      if (step.step_number === index) {
+        stat = step.step_status;
+      };
+    });
+  };
 
-  if (stepNumber !== 0) {
+  if (step.stepNumber !== 0) {
     submitBlock = (
       <form onSubmit={submit} >
         <div className={stat ? 'hidden' : 'block'}>
@@ -20,7 +23,7 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
             type='text'
             placeholder='Add url here'
             name='url'
-            value={url}
+            value={step.url}
             onChange={addUrl}
           />
           <button className='btn btn-secondary' type='submit'>
@@ -36,12 +39,12 @@ const DashboardStep = ({ stepNumber, details, url, data, addUrl, submit, alert, 
 
   return (
     <section className='dashboard-step'>
-      <h3>Step {stepNumber}</h3>
+      <h3>Step {step.stepNumber}</h3>
       <p>
-        <b>{details}</b>
+        <b>{step.details}</b>
       </p>
       {submitBlock}
-      <StatusMessage stat={stat} stepNumber={stepNumber}/>
+      <StatusMessage stat={stat} stepNumber={step.stepNumber}/>
     </section>
   );
 };
